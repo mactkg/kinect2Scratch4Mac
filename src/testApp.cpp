@@ -89,7 +89,7 @@ void testApp::update(){
     
     ofxTrackedUser* user = recordUser.getTrackedUser(1);
     sendPoints(user->neck.position[0], 0);
-    sendPoints(user->neck.position[1], 1);
+    /*sendPoints(user->neck.position[1], 1);
     sendPoints(user->left_shoulder.position[1], 2);
     sendPoints(user->left_upper_arm.position[1], 3);
     sendPoints(user->left_lower_arm.position[1], 4);
@@ -102,8 +102,7 @@ void testApp::update(){
     sendPoints(user->left_lower_leg.position[1], 11);
     sendPoints(user->right_lower_torso.position[1], 12);
     sendPoints(user->right_upper_leg.position[1], 13);
-    sendPoints(user->right_lower_leg.position[1], 14);
-    
+    sendPoints(user->right_lower_leg.position[1], 14);*/
     scratch.update();
 }
 
@@ -189,13 +188,20 @@ void testApp::draw(){
 void testApp::sendPoints(XnPoint3D position, int joint){
     int points[3];
     
+    /*
     points[0] = (double)position.X / recordDepth.getWidth() * 240;
     points[1] = (double)position.Y / recordDepth.getHeight() * 180;
     points[2] = (double)position.Z / recordDepth.getMaxDepth() * 180;
+    */
     
+    points[0] = 2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
+    points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
+    points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
+
     scratch.sensorUpdate(jointNames[joint] + "_x", ofToString(points[0]));
     scratch.sensorUpdate(jointNames[joint] + "_y", ofToString(points[1]));
     scratch.sensorUpdate(jointNames[joint] + "_z", ofToString(points[2]));
+    std::cout << jointNames[joint] << ":" << ofToString(points[0]) << ", " << ofToString(points[1]) <<endl;
 }
 
 void testApp::drawMasks() {
