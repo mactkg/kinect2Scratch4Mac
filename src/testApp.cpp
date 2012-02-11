@@ -27,6 +27,8 @@ void testApp::setup() {
     
 	ofBackground(0, 0, 0);
     
+    counterI = 0;
+    
 }
 
 void testApp::setupRecording(string _filename) {
@@ -37,7 +39,6 @@ void testApp::setupRecording(string _filename) {
 #endif
 
 	recordContext.setup();	// all nodes created by code -> NOT using the xml config file at all
-	//recordContext.setupUsingXMLFile();
 	recordDepth.setup(&recordContext);
 	recordImage.setup(&recordContext);
 
@@ -52,12 +53,9 @@ void testApp::setupRecording(string _filename) {
 	recordHandTracker.setFilterFactors(filterFactor);	// custom smoothing/filtering (can also set per hand with setFilterFactor)...set them all to 0.1f to begin with
 
 	recordContext.toggleRegisterViewport();
-	recordContext.toggleMirror();
+	//recordContext.toggleMirror();
 
-	oniRecorder.setup(&recordContext, ONI_STREAMING);
-	//oniRecorder.setup(&recordContext, ONI_CYCLIC, 60);
-	//read the warning in ofxOpenNIRecorder about memory usage with ONI_CYCLIC recording!!!
-    
+	oniRecorder.setup(&recordContext, ONI_STREAMING);    
 }
 
 //--------------------------------------------------------------
@@ -86,24 +84,27 @@ void testApp::update(){
         user1Mask.setFromPixels(recordUser.getUserPixels(1), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
         user2Mask.setFromPixels(recordUser.getUserPixels(2), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
     }
-    
-    ofxTrackedUser* user = recordUser.getTrackedUser(1);
-    sendPoints(user->neck.position[0], 0);
-    /*sendPoints(user->neck.position[1], 1);
-    sendPoints(user->left_shoulder.position[1], 2);
-    sendPoints(user->left_upper_arm.position[1], 3);
-    sendPoints(user->left_lower_arm.position[1], 4);
-    sendPoints(user->right_shoulder.position[1], 5);
-    sendPoints(user->right_upper_arm.position[1], 6);
-    sendPoints(user->right_lower_arm.position[1], 7);
-    sendPoints(user->left_upper_torso.position[1], 8);
-    sendPoints(user->left_lower_torso.position[1], 9);
-    sendPoints(user->left_upper_leg.position[1], 10);
-    sendPoints(user->left_lower_leg.position[1], 11);
-    sendPoints(user->right_lower_torso.position[1], 12);
-    sendPoints(user->right_upper_leg.position[1], 13);
-    sendPoints(user->right_lower_leg.position[1], 14);*/
-    scratch.update();
+    if(counterI > 10){
+        ofxTrackedUser* user = recordUser.getTrackedUser(1);
+        sendPoints(user->neck.position[0], 0);
+        sendPoints(user->neck.position[1], 1);
+        sendPoints(user->left_shoulder.position[1], 2);
+        sendPoints(user->left_upper_arm.position[1], 3);
+        sendPoints(user->left_lower_arm.position[1], 4);
+        sendPoints(user->right_shoulder.position[1], 5);
+        sendPoints(user->right_upper_arm.position[1], 6);
+        sendPoints(user->right_lower_arm.position[1], 7);
+        sendPoints(user->left_upper_torso.position[1], 8);
+        sendPoints(user->left_lower_torso.position[1], 9);
+        sendPoints(user->left_upper_leg.position[1], 10);
+        sendPoints(user->left_lower_leg.position[1], 11);
+        sendPoints(user->right_lower_torso.position[1], 12);
+        sendPoints(user->right_upper_leg.position[1], 13);
+        sendPoints(user->right_lower_leg.position[1], 14);
+        scratch.update();
+        counterI = 0;
+    }
+    counterI++;
 }
 
 //--------------------------------------------------------------
@@ -116,8 +117,6 @@ void testApp::draw(){
 
     recordDepth.draw(0,0,640,480);
     recordImage.draw(640, 0, 640, 480);
-
-    depthRangeMask.draw(0, 480, 320, 240);	// can use this with openCV to make masks, find contours etc when not dealing with openNI 'User' like objects
 
     if (isTracking) {
         recordUser.draw();
@@ -188,20 +187,17 @@ void testApp::draw(){
 void testApp::sendPoints(XnPoint3D position, int joint){
     int points[3];
     
-    /*
-    points[0] = (double)position.X / recordDepth.getWidth() * 240;
-    points[1] = (double)position.Y / recordDepth.getHeight() * 180;
-    points[2] = (double)position.Z / recordDepth.getMaxDepth() * 180;
-    */
+    string msg = "sensor-update \"";
     
     points[0] = 2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
     points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
     points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
+    
+    msg += jointNames[joint] + "_x\" " + ofToString(points[0]) + " ";
+    msg += jointNames[joint] + "_y\" " + ofToString(points[1]) + " ";
+    msg += jointNames[joint] + "_z\" " + ofToString(points[2]);
 
-    scratch.sensorUpdate(jointNames[joint] + "_x", ofToString(points[0]));
-    scratch.sensorUpdate(jointNames[joint] + "_y", ofToString(points[1]));
-    scratch.sensorUpdate(jointNames[joint] + "_z", ofToString(points[2]));
-    std::cout << jointNames[joint] << ":" << ofToString(points[0]) << ", " << ofToString(points[1]) <<endl;
+    scratch.broadcastScratch(msg);
 }
 
 void testApp::drawMasks() {
