@@ -26,9 +26,7 @@ void testApp::setup() {
     scratch.setup();
     
 	ofBackground(0, 0, 0);
-    
-    counterI = 0;
-    
+        
 }
 
 void testApp::setupRecording(string _filename) {
@@ -84,7 +82,7 @@ void testApp::update(){
         user1Mask.setFromPixels(recordUser.getUserPixels(1), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
         user2Mask.setFromPixels(recordUser.getUserPixels(2), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
     }
-    if(counterI > 10){
+    //if(counterI > 10){
         ofxTrackedUser* user = recordUser.getTrackedUser(1);
         sendPoints(user->neck.position[0], 0);
         sendPoints(user->neck.position[1], 1);
@@ -102,9 +100,9 @@ void testApp::update(){
         sendPoints(user->right_upper_leg.position[1], 13);
         sendPoints(user->right_lower_leg.position[1], 14);
         scratch.update();
-        counterI = 0;
-    }
-    counterI++;
+        //counterI = 0;
+    //}
+    //counterI++;
 }
 
 //--------------------------------------------------------------
@@ -186,18 +184,14 @@ void testApp::draw(){
 
 void testApp::sendPoints(XnPoint3D position, int joint){
     int points[3];
-    
-    string msg = "sensor-update \"";
-    
+        
     points[0] = 2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
     points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
     points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
     
-    msg += jointNames[joint] + "_x\" " + ofToString(points[0]) + " ";
-    msg += jointNames[joint] + "_y\" " + ofToString(points[1]) + " ";
-    msg += jointNames[joint] + "_z\" " + ofToString(points[2]);
-
-    scratch.broadcastScratch(msg);
+    scratch.sensorUpdate(jointNames[joint] + "_x", ofToString(points[0]));
+    scratch.sensorUpdate(jointNames[joint] + "_y", ofToString(points[1]));
+    scratch.sensorUpdate(jointNames[joint] + "_z", ofToString(points[2]));
 }
 
 void testApp::drawMasks() {
