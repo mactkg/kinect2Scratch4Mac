@@ -40,6 +40,7 @@ MIT License
 * openFrameworks(007)
 * ofxOpenNI
 * ofxScratch
+
 please put your config files into /bin/data/openni/config when you use.
 
 ## Changelogs
