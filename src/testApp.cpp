@@ -36,8 +36,6 @@ void testApp::setupRecording(string _filename) {
 
 }
 
-void testApp::setupGui(){}
-
 //--------------------------------------------------------------
 void testApp::update(){
 
@@ -87,7 +85,7 @@ void testApp::draw(){
 	ofSetColor(255, 255, 255);
 
 	glPushMatrix();
-	glScalef(0.75, 0.75, 0.75);
+	glScalef(0.50, 0.50, 0.50);
 
     recordDepth.draw(0,0,640,480);
 
