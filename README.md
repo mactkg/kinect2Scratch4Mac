@@ -27,6 +27,10 @@ I'm distributing the application at [HERE]("http://dl.dropbox.com/u/787507/kinec
 3. 遠隔センサー接続をオンにします:Turn on remote sensor connection
 4. このアプリを立ち上げます:Lanch this app
 
+Kinectのテストのためにこのプロジェクトとかおすすめです http://scratch.mit.edu/projects/SHowell/1523809
+
+I recommend you this project for test: http://scratch.mit.edu/projects/SHowell/1523809
+
 ## ライセンス - License
 
 MIT License
