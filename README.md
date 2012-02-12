@@ -17,9 +17,9 @@ Making Kinect enviroment on Mac is difficlut, but there are many informations on
 So please search the words like this:"kinect mac install" "openni mac install"
 
 ## 使い方 - How to use it?
-ビルド（みんなが使えるようにしたもの）を[こちら]("http://dummy/")で配布中です。
+ビルド（みんなが使えるようにしたもの）を[こちら]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")で配布中です。
 
-I'm distributing the application at [HERE]("http://dummy/")
+I'm distributing the application at [HERE]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
 
 0. アプリを[ここ]("http://dummy/")からダウンロードします:Download from [here]("http://dummy/")
 1. Kinectをつなげます:Connect Kinect to your computer
@@ -38,3 +38,5 @@ MIT License
 * ofxScratch
 please put your config files into /bin/data/openni/config when you use.
 
+## Changelogs
+* v001 - first release
