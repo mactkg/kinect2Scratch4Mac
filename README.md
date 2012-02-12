@@ -1,4 +1,9 @@
 #KinectをScratchで使う - the app to use Kinect on Scratch
+MacでもKinectを使ってScratchで遊びたいですよね。作りました。動作確認は10.6の最新版で行なっています。10.7や10.5などでは動作確認していません。ごめんなさい。
+もしチャレンジして動くことがあったら、ぜひ教えてください。
+
+You wanna play scratch with kinect on mac, don't you?  I made it!  I've done test on MacOSX 10.6(latest).
+I've not done test on MacOSX 10.5,10.7 yet,Sorry.  But if you can run it them, please tell me that.
 ## 必要なもの - Requires
 * Kinect
 * OpenNI
