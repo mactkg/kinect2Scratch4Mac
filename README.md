@@ -16,9 +16,11 @@ So please search the words like this:"kinect mac install" "openni mac install"
 
 I'm distributing the application at [HERE]("http://dummy/")
 
-Kinectを接続し、Scratchを立ち上げて遠隔センサー接続をオンにした後に、このアプリを立ち上げて下さい。
-
-Run this app after run scratch and turn on remote sensor connect.
+0. アプリを[ここ]("http://dummy/")からダウンロードします:Download from [here]("http://dummy/")
+1. Kinectをつなげます:Connect Kinect to your computer
+2. Scratchを起動します:Run Scratch
+3. 遠隔センサー接続をオンにします:Turn on remote sensor connection
+4. このアプリを立ち上げます:Lanch this app
 
 ## ライセンス - License
 
