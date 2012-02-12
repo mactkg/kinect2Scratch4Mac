@@ -4,6 +4,7 @@
 //#define USE_IR // Uncomment this to use infra red instead of RGB cam...
 
 #include "ofxOpenNI.h"
+#include "ofxUI.h"
 #include "ofxScratch.h"
 #include "ofMain.h"
 
@@ -23,25 +24,18 @@ public:
 	void windowResized(int w, int h);
 
 	void	setupRecording(string _filename = "");
-	void	setupPlayback(string _filename);
-	string	generateFileName();
+    void    setupGui(){}
 
-	bool				isLive, isTracking, isRecording, isCloud, isCPBkgnd, isMasking;
-	bool				isTrackingHands, isFiltering;
-
-	ofxOpenNIContext	recordContext, playContext;
-	ofxDepthGenerator	recordDepth, playDepth;
+	ofxOpenNIContext	recordContext;
+	ofxDepthGenerator	recordDepth;
 
 #ifdef USE_IR
-	ofxIRGenerator		recordImage, playImage;
+	ofxIRGenerator		recordImage;
 #else
-	ofxImageGenerator	recordImage, playImage;
+	ofxImageGenerator	recordImage;
 #endif
 
-	ofxHandGenerator	recordHandTracker, playHandTracker;
-
-	ofxUserGenerator	recordUser, playUser;
-	ofxOpenNIRecorder	oniRecorder;
+	ofxUserGenerator	recordUser;
 
 #if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
 	ofxHardwareDriver	hardware;
@@ -50,7 +44,6 @@ public:
     ofxScratch          scratch;
     void                sendPoints(XnPoint3D position, int joint);
 	void				drawMasks();
-	void				drawPointCloud(ofxUserGenerator * user_generator, int userID);
 
 	int					nearThreshold, farThreshold;
 	int					pointCloudRotationY;
