@@ -21,7 +21,8 @@ So please search the words like this:"kinect mac install" "openni mac install"
 
 I'm distributing the application at [http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
 
-0. Kinect2Scratch4Macを上のリンクからダウンロードします:Download Kinect2Scratch4Mac from [http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
+
+0. Kinect2Scratch4Macを上のリンクからダウンロードします:Download Kinect2Scratch4Mac from above link.
 1. Kinectをつなげます:Connect Kinect to your computer
 2. Scratchを起動します:Run Scratch
 3. 遠隔センサー接続をオンにします:Turn on remote sensor connection
