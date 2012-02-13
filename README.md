@@ -17,15 +17,15 @@ Making Kinect enviroment on Mac is difficlut, but there are many informations on
 So please search the words like this:"kinect mac install" "openni mac install"
 
 ## 使い方 - How to use it?
-ビルド（みんなが使えるようにしたもの）を[こちら]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")で配布中です。
+ビルド（みんなが使えるようにしたもの）を配布中です→　[http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
 
-I'm distributing the application at [HERE]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
+I'm distributing the application at [http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
 
-0. アプリを[ここ]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")からダウンロードします:Download from [here]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
+0. Kinect2Scratch4Macを上のリンクからダウンロードします:Download Kinect2Scratch4Mac from [http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
 1. Kinectをつなげます:Connect Kinect to your computer
 2. Scratchを起動します:Run Scratch
 3. 遠隔センサー接続をオンにします:Turn on remote sensor connection
-4. このアプリを立ち上げます:Lanch this app
+4. Kinect2Scratch4Macを立ち上げます:Lanch Kinect2Scratch4Mac
 
 Kinectのテストのためにこのプロジェクトとかおすすめです http://scratch.mit.edu/projects/SHowell/1523809
 
