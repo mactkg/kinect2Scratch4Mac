@@ -3,12 +3,12 @@ MacでもKinectを使ってScratchで遊びたいですよね。作りました�
 もしチャレンジして動くことがあったら、ぜひ教えてください。
 
 You wanna play scratch with kinect on mac, don't you?  I made it!  I've done test on MacOSX 10.6(latest).
-I've not done test on MacOSX 10.5,10.7 yet,Sorry.  But if you can run it them, please tell me that.
+I've not done test on MacOSX 10.5,10.7 yet, sorry.  But if you can run it them, please tell me that.
 ## 必要なもの - Requires
 * Kinect
-* OpenNI
-* SensorKinect
-* Nite
+* OpenNI (動作チェックはv1.5.2.7で行いました running check on v1.5.2.7)
+* SensorKinect (動作チェックはv5.1.0.25で行いました running check on v5.1.0.25)
+* Nite (動作チェックはv1.5.2.7で行いました running check on v1.5.2.7)
 
 MacでKinectの環境を整えることは大変ですが、インターネットに沢山の情報があります。
 なのでこんな感じのキーワードで、検索をしてみて下さい。「Kinect mac インストール」「OpenNI mac インストール」
