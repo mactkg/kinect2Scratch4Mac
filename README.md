@@ -44,12 +44,8 @@ I recommend you this project for test: http://scratch.mit.edu/projects/SHowell/1
 MIT License
 
 # For developers
-## Ex-Requires
-* openFrameworks(007)
-* ofxOpenNI
-* ofxScratch
-
-please put your config files into /bin/data/openni/config when you use.
+please read BUILD.md
+put your config files into /bin/data/openni/config when you use.
 
 ## Changelogs
 * v001 - first release
