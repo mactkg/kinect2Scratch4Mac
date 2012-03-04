@@ -97,7 +97,7 @@ void testApp::draw(){
     if(connectKinect){
         glPushMatrix();
         glScalef(0.50, 0.50, 0.50);
-
+        
         recordDepth.draw(0,0,640,480);
 
         recordUser.draw();

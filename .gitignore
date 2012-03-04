@@ -2,3 +2,5 @@
 /build/*
 /bin/data/*
 *.app
+*.mode1v3
+*.pbxuser
