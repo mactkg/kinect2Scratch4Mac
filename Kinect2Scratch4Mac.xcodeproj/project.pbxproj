@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		216E1AA414E126C000AF0735 /* ofxScratch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E1A9C14E126BF00AF0735 /* ofxScratch.cpp */; };
-		216E1AAF14E126FB00AF0735 /* ofxThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E1AAD14E126FB00AF0735 /* ofxThread.cpp */; };
 		216E1ABF14E1270500AF0735 /* ofxTCPClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E1AB714E1270400AF0735 /* ofxTCPClient.cpp */; };
 		216E1AC014E1270500AF0735 /* ofxTCPManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E1AB914E1270400AF0735 /* ofxTCPManager.cpp */; };
 		216E1AC114E1270500AF0735 /* ofxTCPServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216E1ABB14E1270400AF0735 /* ofxTCPServer.cpp */; };
@@ -92,10 +91,6 @@
 		216E1A9A14E126BF00AF0735 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		216E1A9C14E126BF00AF0735 /* ofxScratch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxScratch.cpp; sourceTree = "<group>"; };
 		216E1A9D14E126BF00AF0735 /* ofxScratch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxScratch.h; sourceTree = "<group>"; };
-		216E1AAA14E126FB00AF0735 /* Instructions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Instructions.txt; sourceTree = "<group>"; };
-		216E1AAB14E126FB00AF0735 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
-		216E1AAD14E126FB00AF0735 /* ofxThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxThread.cpp; sourceTree = "<group>"; };
-		216E1AAE14E126FB00AF0735 /* ofxThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxThread.h; sourceTree = "<group>"; };
 		216E1AB214E1270400AF0735 /* Instructions.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Instructions.txt; sourceTree = "<group>"; };
 		216E1AB314E1270400AF0735 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		216E1AB514E1270400AF0735 /* ofxNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxNetwork.h; sourceTree = "<group>"; };
@@ -366,33 +361,6 @@
 			path = src;
 			sourceTree = "<group>";
 		};
-		216E1AA814E126FB00AF0735 /* ofxThread */ = {
-			isa = PBXGroup;
-			children = (
-				216E1AA914E126FB00AF0735 /* docs */,
-				216E1AAB14E126FB00AF0735 /* install.xml */,
-				216E1AAC14E126FB00AF0735 /* src */,
-			);
-			path = ofxThread;
-			sourceTree = "<group>";
-		};
-		216E1AA914E126FB00AF0735 /* docs */ = {
-			isa = PBXGroup;
-			children = (
-				216E1AAA14E126FB00AF0735 /* Instructions.txt */,
-			);
-			path = docs;
-			sourceTree = "<group>";
-		};
-		216E1AAC14E126FB00AF0735 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				216E1AAD14E126FB00AF0735 /* ofxThread.cpp */,
-				216E1AAE14E126FB00AF0735 /* ofxThread.h */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
 		216E1AB014E1270400AF0735 /* ofxNetwork */ = {
 			isa = PBXGroup;
 			children = (
@@ -448,7 +416,7 @@
 				770F032414B9969E003CCE99 /* libXnVNite_1_5_2.dylib */,
 			);
 			name = lib;
-			path = bin/data/openni/lib;
+			path = ../../apps/myapps/kinect2Scratch4Mac/bin/data/openni/lib;
 			sourceTree = "<group>";
 		};
 		770F033314B996AE003CCE99 /* include */ = {
@@ -458,8 +426,7 @@
 				770F033614B996AE003CCE99 /* nite */,
 				770F037414B996AE003CCE99 /* openni */,
 			);
-			name = include;
-			path = ../../../addons/ofxOpenNI/include;
+			path = include;
 			sourceTree = "<group>";
 		};
 		770F033414B996AE003CCE99 /* libusb */ = {
@@ -687,15 +654,13 @@
 				77781EBD14BA9AE300CD45EF /* ofxUserGenerator.cpp */,
 				77781EBE14BA9AE300CD45EF /* ofxUserGenerator.h */,
 			);
-			name = src;
-			path = ../../../addons/ofxOpenNI/src;
+			path = src;
 			sourceTree = "<group>";
 		};
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
 				216E1AB014E1270400AF0735 /* ofxNetwork */,
-				216E1AA814E126FB00AF0735 /* ofxThread */,
 				216E1A8B14E126BF00AF0735 /* ofxScratch */,
 				216E1A8A14E1267900AF0735 /* ofxOpenNI */,
 			);
@@ -878,7 +843,6 @@
 				77781EC814BA9AE300CD45EF /* ofxTrackedUser.cpp in Sources */,
 				77781EC914BA9AE300CD45EF /* ofxUserGenerator.cpp in Sources */,
 				216E1AA414E126C000AF0735 /* ofxScratch.cpp in Sources */,
-				216E1AAF14E126FB00AF0735 /* ofxThread.cpp in Sources */,
 				216E1ABF14E1270500AF0735 /* ofxTCPClient.cpp in Sources */,
 				216E1AC014E1270500AF0735 /* ofxTCPManager.cpp in Sources */,
 				216E1AC114E1270500AF0735 /* ofxTCPServer.cpp in Sources */,
