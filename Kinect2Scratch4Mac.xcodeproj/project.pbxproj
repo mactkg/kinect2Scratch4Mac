@@ -290,12 +290,12 @@
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1E0A3A1BDC003C02F2 /* testApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = testApp.cpp; path = src/testApp.cpp; sourceTree = SOURCE_ROOT; };
 		E4B69E1F0A3A1BDC003C02F2 /* testApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = testApp.h; path = src/testApp.h; sourceTree = SOURCE_ROOT; };
-		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
+		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; name = "openFrameworks-Info.plist"; path = "../../../../apps/myapps/kinect2Scratch4Mac/openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E4C2424510CC5A17004149E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		E4C2424610CC5A17004149E2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
-		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
+		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Project.xcconfig; path = ../../../../apps/myapps/kinect2Scratch4Mac/Project.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,7 +344,7 @@
 				770F031514B9969E003CCE99 /* lib */,
 				770F033314B996AE003CCE99 /* include */,
 			);
-			name = ofxOpenNI;
+			path = ofxOpenNI;
 			sourceTree = "<group>";
 		};
 		216E1A8B14E126BF00AF0735 /* ofxScratch */ = {
@@ -354,8 +354,7 @@
 				216E1A9A14E126BF00AF0735 /* README.md */,
 				216E1A9B14E126BF00AF0735 /* src */,
 			);
-			name = ofxScratch;
-			path = ../../../../of0062/addons/ofxScratch;
+			path = ofxScratch;
 			sourceTree = "<group>";
 		};
 		216E1A9B14E126BF00AF0735 /* src */ = {
@@ -374,8 +373,7 @@
 				216E1AAB14E126FB00AF0735 /* install.xml */,
 				216E1AAC14E126FB00AF0735 /* src */,
 			);
-			name = ofxThread;
-			path = ../../../../of0062/addons/ofxThread;
+			path = ofxThread;
 			sourceTree = "<group>";
 		};
 		216E1AA914E126FB00AF0735 /* docs */ = {
@@ -402,8 +400,7 @@
 				216E1AB314E1270400AF0735 /* install.xml */,
 				216E1AB414E1270400AF0735 /* src */,
 			);
-			name = ofxNetwork;
-			path = ../../../../of0062/addons/ofxNetwork;
+			path = ofxNetwork;
 			sourceTree = "<group>";
 		};
 		216E1AB114E1270400AF0735 /* docs */ = {
@@ -703,6 +700,7 @@
 				216E1A8A14E1267900AF0735 /* ofxOpenNI */,
 			);
 			name = addons;
+			path = ../../../addons;
 			sourceTree = "<group>";
 		};
 		BBAB23C913894ECA00AA2426 /* system frameworks */ = {
@@ -779,6 +777,7 @@
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 			);
 			name = openFrameworks;
+			path = ../../../libs/openFrameworksCompiled/project/osx;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -918,6 +917,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
@@ -947,6 +947,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VALUE = NO;
 				GCC_WARN_UNUSED_VARIABLE = NO;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_CPLUSPLUSFLAGS = (
 					"-D__MACOSX_CORE__",
 					"-lpthread",
