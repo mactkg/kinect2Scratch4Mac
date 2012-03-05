@@ -1,4 +1,4 @@
-#KinectをScratchで使う - the app to use Kinect on Scratch
+# KinectをScratchで使う - the app to use Kinect on Scratch
 MacでもKinectを使ってScratchで遊びたいですよね。作りました。動作確認は10.6の最新版で行なっています。10.7や10.5などでは動作確認していません。ごめんなさい。
 もしチャレンジして動くことがあったら、ぜひ教えてください。
 
