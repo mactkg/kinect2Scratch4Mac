@@ -1,6 +1,6 @@
 .DS_Store
-build
+/build/*
+/bin/data/*
 *.app
 *.mode1v3
 *.pbxuser
-openFrameworks/libs/openFrameworksCompiled/lib/osx
