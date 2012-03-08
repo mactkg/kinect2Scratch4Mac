@@ -5,7 +5,6 @@
 
 #include "ofxOpenNI.h"
 #include "ofxScratch.h"
-#include "ofxUI.h"
 #include "ofMain.h"
 
 class testApp : public ofBaseApp{
@@ -14,8 +13,7 @@ public:
 	void setup();
 	void update();
 	void draw();
-    void exit();
-    
+
 	void keyPressed  (int key);
 	void keyReleased(int key);
 	void mouseMoved(int x, int y );
@@ -25,7 +23,6 @@ public:
 	void windowResized(int w, int h);
 
 	void	setupRecording(string _filename = "");
-    void    setupGui();
 
 	ofxOpenNIContext	recordContext;
 	ofxDepthGenerator	recordDepth;
@@ -52,10 +49,6 @@ public:
 	ofImage				allUserMasks, user1Mask, user2Mask, depthRangeMask;
 
 	float				filterFactor;
-
-    ofxUICanvas *gui;   	
-	void guiEvent(ofxUIEventArgs &e);
-    bool connectScratch, connectKinect;
 };
 
 #endif
