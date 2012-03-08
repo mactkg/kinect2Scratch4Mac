@@ -4,6 +4,4 @@
 *.app
 *.mode1v3
 *.pbxuser
-*.xcuserdatad
-*.xcuserdatad/
-*..xcuserstate
+xcuserdata/
