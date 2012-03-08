@@ -36,7 +36,6 @@ void testApp::setupRecording(string _filename) {
 
 }
 
-void testApp::setupGui(){}
 
 //--------------------------------------------------------------
 void testApp::update(){

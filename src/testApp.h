@@ -4,7 +4,6 @@
 //#define USE_IR // Uncomment this to use infra red instead of RGB cam...
 
 #include "ofxOpenNI.h"
-#include "ofxUI.h"
 #include "ofxScratch.h"
 #include "ofMain.h"
 
@@ -24,7 +23,6 @@ public:
 	void windowResized(int w, int h);
 
 	void	setupRecording(string _filename = "");
-    void    setupGui(){}
 
 	ofxOpenNIContext	recordContext;
 	ofxDepthGenerator	recordDepth;
