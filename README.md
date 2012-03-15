@@ -26,13 +26,13 @@ I recommend you this project for test: http://scratch.mit.edu/projects/SHowell/1
 ## ビルド方法 - How to build it?
 
 
-1.openFrameworks(007)を[ここ]("http://openframeworks.cc/download")からダウンロードします
-2.解凍します
-3.Kinect2Scratch4Mac（これ）を上部の"ZIP"ってところからダウンロードします
-4.解凍します
-5.2で解凍して出来たフォルダ/apps/examples/の中に4で出来たフォルダをいれます
-6.フォルダを入れたら、中にはいってるKinect2Scratch4Mac.xcodeprojを開きます
-7.Runボタンをクリックすれば動きます（Kinectをつなげたりするのを忘れないように）
+1. openFrameworks(007)を[ここ]("http://openframeworks.cc/download")からダウンロードします
+2. 解凍します
+3. Kinect2Scratch4Mac（これ）を上部の"ZIP"ってところからダウンロードします
+4. 解凍します
+5. 2で解凍して出来たフォルダ/apps/examples/の中に4で出来たフォルダをいれます
+6. フォルダを入れたら、中にはいってるKinect2Scratch4Mac.xcodeprojを開きます
+7. Runボタンをクリックすれば動きます（Kinectをつなげたりするのを忘れないように）
 
 ### 遠隔センサー接続オンのやり方 - How to turn on remote sensor connections
 0. Scratchを起動します:Run Scratch
