@@ -6,15 +6,6 @@ You wanna play scratch with kinect on mac, don't you?  I made it!  I've done tes
 I've not done test on MacOSX 10.5,10.7 yet, sorry.  But if you can run it them, please tell me that.
 ## 必要なもの - Requires
 * Kinect
-* OpenNI (動作チェックはv1.5.2.7で行いました:running check on v1.5.2.7)
-* SensorKinect (動作チェックはv5.1.0.25で行いました:running check on v5.1.0.25)
-* Nite (動作チェックはv1.5.2.7で行いました:running check on v1.5.2.7)
-
-MacでKinectの環境を整えることは大変ですが、インターネットに沢山の情報があります。
-なのでこんな感じのキーワードで、検索をしてみて下さい。「Kinect mac インストール」「OpenNI mac インストール」
-
-Making Kinect enviroment on Mac is difficlut, but there are many informations on the Internet.
-So please search the words like this:"kinect mac install" "openni mac install"
 
 ## 使い方 - How to use it?
 ビルド（みんなが使えるようにしたもの）を配布中です→　[http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
@@ -32,6 +23,16 @@ Kinectのテストのためにこのプロジェクトとかおすすめです h
 
 I recommend you this project for test: http://scratch.mit.edu/projects/SHowell/1523809
 
+## ビルド方法 - How to build it?
+
+1.openFrameworks(007)を[ここ]("http://openframeworks.cc/download")からダウンロードします
+2.解凍します
+3.Kinect2Scratch4Mac（これ）を上部の"ZIP"ってところからダウンロードします
+4.解凍します
+5.2で解凍して出来たフォルダ/apps/examples/の中に4で出来たフォルダをいれます
+6.フォルダを入れたら、中にはいってるKinect2Scratch4Mac.xcodeprojを開きます
+7.Runボタンをクリックすれば動きます（Kinectをつなげたりするのを忘れないように）
+
 ### 遠隔センサー接続オンのやり方 - How to turn on remote sensor connections
 0. Scratchを起動します:Run Scratch
 1. "調べる"ボタンをクリックします:Click "Sensing" button
@@ -42,10 +43,6 @@ I recommend you this project for test: http://scratch.mit.edu/projects/SHowell/1
 ## ライセンス - License
 
 MIT License
-
-# For developers
-please read BUILD.md
-put your config files into /bin/data/openni/config when you use.
 
 ## Changelogs
 * v001 - first release
