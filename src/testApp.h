@@ -5,6 +5,7 @@
 
 #include "ofxOpenNI.h"
 #include "ofxScratch.h"
+#include "ofxSimpleGuiToo.h"
 #include "ofMain.h"
 
 class testApp : public ofBaseApp{
@@ -22,7 +23,7 @@ public:
 	void mouseReleased(int x, int y, int button);
 	void windowResized(int w, int h);
 
-	void	setupRecording(string _filename = "");
+	void	setupKinect();
 
 	ofxOpenNIContext	recordContext;
 	ofxDepthGenerator	recordDepth;
@@ -42,6 +43,7 @@ public:
     ofxScratch          scratch;
     void                sendPoints(XnPoint3D position, int joint);
 	void				drawMasks();
+    void                updateKinect();
 
 	int					nearThreshold, farThreshold;
 	int					pointCloudRotationY;
@@ -49,6 +51,8 @@ public:
 	ofImage				allUserMasks, user1Mask, user2Mask, depthRangeMask;
 
 	float				filterFactor;
+    
+    bool                 isKinect, isScratch, goKinect, goScratch;
 };
 
 #endif

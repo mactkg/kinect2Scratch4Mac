@@ -6,16 +6,24 @@ string jointNames[] = { "head", "neck", "l_shoulder", "l_elbow", "l_hand",
 
 //--------------------------------------------------------------
 void testApp::setup() {
-
+    
 	nearThreshold = 500;
 	farThreshold  = 1000;
-	setupRecording();
-    scratch.setup();
-	ofBackground(0, 0, 0);
-        
+
+	ofBackground(100, 100, 100);
+    isKinect = false;
+    isScratch = false;
+    goKinect = false;
+    goScratch = false;
+    
+    gui.addToggle("Kinect::Connect", goKinect);
+    gui.addToggle("Scratch::Connect", goScratch);
+    gui.setup();
+    gui.show();
+    
 }
 
-void testApp::setupRecording(string _filename) {
+void testApp::setupKinect() {
 
 #if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
 	hardware.setup();				// libusb direct control of motor, LED and accelerometers
@@ -34,33 +42,104 @@ void testApp::setupRecording(string _filename) {
     recordContext.toggleRegisterViewport();
 	recordContext.toggleMirror();
 
+    isKinect = true;
 }
 
 
 //--------------------------------------------------------------
 void testApp::update(){
 
+    if (isKinect) {
+        updateKinect();
+    } else if(goKinect) {
+        setupKinect();
+    }
+    
+    if (isScratch) {
+        scratch.update();
+    } else if(goScratch) {
+        scratch.setup();
+        isScratch = true;
+    }
+    
+}
+
+//--------------------------------------------------------------
+void testApp::draw(){
+    
+    gui.draw();
+    
+    if(isKinect){
+
+        ofSetColor(255, 255, 255);
+
+        glPushMatrix();
+        glScalef(0.75, 0.75, 0.75);
+
+        recordDepth.draw(0,0,640,480);
+
+        recordUser.draw();
+
+        drawMasks();
+        
+        glPopMatrix();
+
+        ofSetColor(255, 255, 0);
+
+        string statusHardware = "";
+    
+    #ifdef TARGET_OSX // only working on Mac at the moment
+        ofPoint statusAccelerometers = hardware.getAccelerometers();
+        stringstream	statusHardwareStream;
+
+        statusHardwareStream
+        << "ACCELEROMETERS:"
+        << " TILT: " << hardware.getTiltAngle() << "/" << hardware.tilt_angle
+        << " x - " << statusAccelerometers.x
+        << " y - " << statusAccelerometers.y
+        << " z - " << statusAccelerometers.z;
+
+        statusHardware = statusHardwareStream.str();
+    #endif
+
+        stringstream msg;
+
+        msg
+        << "FPS   : " << ofToString(ofGetFrameRate()) << "  " << statusHardware << endl;
+            
+        ofDrawBitmapString(msg.str(), 20, 500);
+    }
+}
+
+//-----------------------------------------------------//
+//    ----------------------------------------------   //
+//    \                                            /   //
+//     \                                          /    //
+//      \________________________________________/     //
+//                      /________\                     //
+//-----------------------------------------------------//
+
+void testApp::updateKinect(){
 #ifdef TARGET_OSX // only working on Mac at the moment
 	hardware.update();
 #endif
-
+    
     // update all nodes
     recordContext.update();
     recordDepth.update();
-
+    
     // demo getting depth pixels directly from depth gen
     depthRangeMask.setFromPixels(recordDepth.getDepthPixels(nearThreshold, farThreshold),
                                  recordDepth.getWidth(), recordDepth.getHeight(), OF_IMAGE_GRAYSCALE);
-
+    
     // update tracking/recording nodes
     recordUser.update();
-
+    
     // demo getting pixels from user gen
     
     allUserMasks.setFromPixels(recordUser.getUserPixels(), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
     user1Mask.setFromPixels(recordUser.getUserPixels(1), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
     
-
     ofxTrackedUser* user = recordUser.getTrackedUser(1);
     sendPoints(user->neck.position[0], 0);
     sendPoints(user->neck.position[1], 1);
@@ -77,63 +156,25 @@ void testApp::update(){
     sendPoints(user->right_lower_torso.position[1], 12);
     sendPoints(user->right_upper_leg.position[1], 13);
     sendPoints(user->right_lower_leg.position[1], 14);
-    scratch.update();
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
-
-	ofSetColor(255, 255, 255);
-
-	glPushMatrix();
-	glScalef(0.75, 0.75, 0.75);
-
-  recordDepth.draw(0,0,640,480);
-
-  recordUser.draw();
-
-  drawMasks();
-    
-	glPopMatrix();
-
-	ofSetColor(255, 255, 0);
-
-	string statusHardware;
-
-#ifdef TARGET_OSX // only working on Mac at the moment
-	ofPoint statusAccelerometers = hardware.getAccelerometers();
-	stringstream	statusHardwareStream;
-
-	statusHardwareStream
-	<< "ACCELEROMETERS:"
-	<< " TILT: " << hardware.getTiltAngle() << "/" << hardware.tilt_angle
-	<< " x - " << statusAccelerometers.x
-	<< " y - " << statusAccelerometers.y
-	<< " z - " << statusAccelerometers.z;
-
-	statusHardware = statusHardwareStream.str();
-#endif
-
-	stringstream msg;
-
-	msg
-	<< "FPS   : " << ofToString(ofGetFrameRate()) << "  " << statusHardware << endl;
-
-	ofDrawBitmapString(msg.str(), 20, 500);
-
-}
 
 void testApp::sendPoints(XnPoint3D position, int joint){
-    int points[3];
-        
-    points[0] = -2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
-    points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
-    points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
-    
-    scratch.sensorUpdate(jointNames[joint] + "_x", ofToString(points[0]));
-    scratch.sensorUpdate(jointNames[joint] + "_y", ofToString(points[1]));
-    scratch.sensorUpdate(jointNames[joint] + "_z", ofToString(points[2]));
+    if (isScratch) {
+        int points[3];
+            
+        points[0] = -2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
+        points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
+        points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
+
+        scratch.sensorUpdate(jointNames[joint] + "_x", ofToString(points[0]));
+        scratch.sensorUpdate(jointNames[joint] + "_y", ofToString(points[1]));
+        scratch.sensorUpdate(jointNames[joint] + "_z", ofToString(points[2]));
+    }
 }
+
+//--------------------------------------------------------------
 
 void testApp::drawMasks() {
 	glPushMatrix();

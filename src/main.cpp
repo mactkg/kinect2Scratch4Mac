@@ -4,8 +4,7 @@
 #include "ofAppGlutWindow.h"
 
 //========================================================================
-int main( ){
-
+int main(){
     ofAppGlutWindow window;
 	ofSetupOpenGL(&window, 960,768, OF_WINDOW);			// <-------- setup the GL context
 
