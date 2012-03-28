@@ -18,16 +18,14 @@ I'm distributing the application at [http://dl.dropbox.com/u/787507/kinect2Scrat
 I recommend you this project for test: http://scratch.mit.edu/projects/SHowell/1523809
 
 ## How to build it?
-I have not translated yet
 
-
-1. openFrameworks(007)を[ここ]("http://openframeworks.cc/download")からダウンロードします
-2. 解凍します
-3. Kinect2Scratch4Mac（これ）を上部の"ZIP"ってところからダウンロードします
-4. 解凍します
-5. 2で解凍して出来たフォルダ/apps/examples/の中に4で出来たフォルダをいれます
-6. フォルダを入れたら、中にはいってるKinect2Scratch4Mac.xcodeprojを開きます
-7. Runボタンをクリックすれば動きます（Kinectをつなげたりするのを忘れないように）
+1. Download openFrameworks(version 007) from [here]("http://openframeworks.cc/download")
+2. Unpack (1)
+3. Download Kinect2Scratch4Mac(this project) from [here]("https://github.com/mactkg/kinect2Scratch4Mac/zipball/master")
+4. Unpack (3)
+5. Put (2) into (4)/apps/examples
+6. Open Kinect2Scratch4Mac.xcodeproj
+7. Press "Run" button
 
 ### How to turn on remote sensor connections
 0. Run Scratch
@@ -41,4 +39,5 @@ I have not translated yet
 MIT License
 
 ## Changelogs
+* v002 - add UI and change connection method
 * v001 - first release
