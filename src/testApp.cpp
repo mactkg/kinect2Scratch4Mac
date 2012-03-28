@@ -17,7 +17,10 @@ void testApp::setup() {
     goScratch = false;
     
     gui.addToggle("Kinect::Connect", goKinect);
+    gui.addSlider("Kinect::Angle", hardware.tilt_angle, -30, 30);
     gui.addToggle("Scratch::Connect", goScratch);
+    
+
     gui.setup();
     gui.show();
     
@@ -68,6 +71,7 @@ void testApp::update(){
 void testApp::draw(){
     
     gui.draw();
+    ofRect(300, 112, 480, 360);
     
     if(isKinect){
 
@@ -76,11 +80,15 @@ void testApp::draw(){
         glPushMatrix();
         glScalef(0.75, 0.75, 0.75);
 
-        recordDepth.draw(0,0,640,480);
-
-        recordUser.draw();
-
         drawMasks();
+        
+        recordDepth.draw(400, 150, 640, 480);
+        
+        glTranslatef(400, 150, 0);
+        
+        recordUser.draw();
+        
+        glTranslatef(0, 0, 0);
         
         glPopMatrix();
 
@@ -122,6 +130,7 @@ void testApp::draw(){
 void testApp::updateKinect(){
 #ifdef TARGET_OSX // only working on Mac at the moment
 	hardware.update();
+    hardware.setTiltAngle(hardware.tilt_angle);
 #endif
     
     // update all nodes
@@ -180,7 +189,7 @@ void testApp::drawMasks() {
 	glPushMatrix();
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);
-	allUserMasks.draw(640, 0, 640, 480);
+	allUserMasks.draw(400, 150, 640, 480);
 	glDisable(GL_BLEND);
     glPopMatrix();
 
