@@ -40,4 +40,5 @@ Kinectのテストのためにこのプロジェクトとかおすすめです h
 MIT License
 
 ## Changelogs
+* v002 - add UI and change connection method
 * v001 - first release
