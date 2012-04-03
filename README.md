@@ -6,7 +6,6 @@ MacでもKinectを使ってScratchで遊びたいですよね。作りました�
 * Kinect
 
 ## 使い方
-ビルド（みんなが使えるようにしたもの）を配布中です→　[http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
 
 0. Kinect2Scratch4Macを上のリンクからダウンロードします
 1. Kinectをつなげます
