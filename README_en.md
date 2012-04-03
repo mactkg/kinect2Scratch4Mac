@@ -6,7 +6,6 @@ I've not done test on MacOSX 10.5,10.7 yet, sorry.  But if you can run it them, 
 * Scratch
 
 ## How to use it?
-I'm distributing the application at [http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip]("http://dl.dropbox.com/u/787507/kinect2Scratch4Mac.zip")
 
   
 0. Download Kinect2Scratch4Mac from above link.
