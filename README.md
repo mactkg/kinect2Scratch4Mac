@@ -1,4 +1,4 @@
-# English README is [here]("https://github.com/mactkg/kinect2Scratch4Mac/blob/master/README_en.md")
+# English README is [here](https://github.com/mactkg/kinect2Scratch4Mac/blob/master/README_en.md)
 # KinectをScratchで使う
 MacでもKinectを使ってScratchで遊びたいですよね。作りました。動作確認は10.6の最新版で行なっています。10.7や10.5などでは動作確認していません。ごめんなさい。
 もしチャレンジして動くことがあったら、ぜひ教えてください。
