@@ -15,7 +15,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
                BuildableName = "kinect2Scratch4Mac.app"
-               BlueprintName = "kinect2Scratch4Mac"
+               BlueprintName = "Kinect2Scratch4Mac"
                ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -25,7 +25,7 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.GDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Release">
       <Testables>
       </Testables>
       <MacroExpansion>
@@ -33,7 +33,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
             BuildableName = "kinect2Scratch4Mac.app"
-            BlueprintName = "kinect2Scratch4Mac"
+            BlueprintName = "Kinect2Scratch4Mac"
             ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -43,7 +43,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.GDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
@@ -51,7 +51,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
             BuildableName = "kinect2Scratch4Mac.app"
-            BlueprintName = "kinect2Scratch4Mac"
+            BlueprintName = "Kinect2Scratch4Mac"
             ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -69,13 +69,13 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
             BuildableName = "kinect2Scratch4Mac.app"
-            BlueprintName = "kinect2Scratch4Mac"
+            BlueprintName = "Kinect2Scratch4Mac"
             ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug">
+      buildConfiguration = "Release">
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
