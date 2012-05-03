@@ -38,5 +38,6 @@ I recommend you this project for test: http://scratch.mit.edu/projects/SHowell/1
 MIT License
 
 ## Changelogs
+* v003 - change scheme file to build stand-alone app
 * v002 - add UI and change connection method
 * v001 - first release
