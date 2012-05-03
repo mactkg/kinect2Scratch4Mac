@@ -1,6 +1,5 @@
 .DS_Store
 /build/*
-/bin/data/*
 *.app
 *.mode1v3
 *.pbxuser
