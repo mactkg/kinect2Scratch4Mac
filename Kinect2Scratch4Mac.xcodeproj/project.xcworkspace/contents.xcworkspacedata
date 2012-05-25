@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Kinect2Scratch4Mac.xcodeproj">
+      location = "self:openNiSample007.xcodeproj">
    </FileRef>
 </Workspace>
