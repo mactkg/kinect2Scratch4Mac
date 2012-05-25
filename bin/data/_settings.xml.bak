@@ -1,0 +1,17 @@
+<controls>
+    <Toggle_Kinect>
+        <Connect></Connect>
+        <name>Kinect::Connect</name>
+        <value>1</value>
+    </Toggle_Kinect>
+    <SliderInt_Kinect>
+        <Angle></Angle>
+        <name>Kinect::Angle</name>
+        <value>16</value>
+    </SliderInt_Kinect>
+    <Toggle_Scratch>
+        <Connect></Connect>
+        <name>Scratch::Connect</name>
+        <value>1</value>
+    </Toggle_Scratch>
+</controls>
