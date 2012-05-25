@@ -16,7 +16,7 @@
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
                BuildableName = "Kinect2Scratch4Mac.app"
                BlueprintName = "Kinect2Scratch4Mac"
-               ReferencedContainer = "container:openNiSample007.xcodeproj">
+               ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -34,7 +34,7 @@
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
             BuildableName = "Kinect2Scratch4Mac.app"
             BlueprintName = "Kinect2Scratch4Mac"
-            ReferencedContainer = "container:openNiSample007.xcodeproj">
+            ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,7 +52,7 @@
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
             BuildableName = "Kinect2Scratch4Mac.app"
             BlueprintName = "Kinect2Scratch4Mac"
-            ReferencedContainer = "container:openNiSample007.xcodeproj">
+            ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -70,7 +70,7 @@
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
             BuildableName = "Kinect2Scratch4Mac.app"
             BlueprintName = "Kinect2Scratch4Mac"
-            ReferencedContainer = "container:openNiSample007.xcodeproj">
+            ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
