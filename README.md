@@ -40,6 +40,6 @@ Kinectのテストのためにこのプロジェクトとかおすすめです h
 MIT License
 
 ## Changelogs
-* <s>v003 - .dylibファイルを.appにBundleできるようにした</s>
+* v003 - .dylibファイルを.appにBundleできるようにした
 * v002 - UIの追加、接続方式の変更をした
 * v001 - 初回リリース
