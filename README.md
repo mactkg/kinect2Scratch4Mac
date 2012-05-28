@@ -20,7 +20,7 @@ Kinectのテストのためにこのプロジェクトとかおすすめです h
 ## ビルド方法 - How to build it?
 
 
-1. openFrameworks(007)を[ここ]("http://openframeworks.cc/download")からダウンロードします
+1. openFrameworks(007)を[ここ](http://openframeworks.cc/download)からダウンロードします
 2. 解凍します
 3. Kinect2Scratch4Mac（これ）を上部の"ZIP"ってところからダウンロードします
 4. 解凍します
@@ -40,6 +40,5 @@ Kinectのテストのためにこのプロジェクトとかおすすめです h
 MIT License
 
 ## Changelogs
-* v003 - .dylibファイルを.appにBundleできるようにした
 * v002 - UIの追加、接続方式の変更をした
 * v001 - 初回リリース
