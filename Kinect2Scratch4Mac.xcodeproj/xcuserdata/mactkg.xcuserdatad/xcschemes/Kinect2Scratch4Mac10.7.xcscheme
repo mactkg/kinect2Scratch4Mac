@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "Kinect2Scratch4Mac.app"
-               BlueprintName = "Kinect2Scratch4Mac"
+               BlueprintIdentifier = "212AF6741573BA3C00EEC0B5"
+               BuildableName = "Kinect2Scratch4Mac10.6 copy.app"
+               BlueprintName = "Kinect2Scratch4Mac10.7"
                ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -31,9 +31,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "Kinect2Scratch4Mac.app"
-            BlueprintName = "Kinect2Scratch4Mac"
+            BlueprintIdentifier = "212AF6741573BA3C00EEC0B5"
+            BuildableName = "Kinect2Scratch4Mac10.6 copy.app"
+            BlueprintName = "Kinect2Scratch4Mac10.7"
             ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -49,9 +49,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "Kinect2Scratch4Mac.app"
-            BlueprintName = "Kinect2Scratch4Mac"
+            BlueprintIdentifier = "212AF6741573BA3C00EEC0B5"
+            BuildableName = "Kinect2Scratch4Mac10.6 copy.app"
+            BlueprintName = "Kinect2Scratch4Mac10.7"
             ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -67,9 +67,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "Kinect2Scratch4Mac.app"
-            BlueprintName = "Kinect2Scratch4Mac"
+            BlueprintIdentifier = "212AF6741573BA3C00EEC0B5"
+            BuildableName = "Kinect2Scratch4Mac10.6 copy.app"
+            BlueprintName = "Kinect2Scratch4Mac10.7"
             ReferencedContainer = "container:Kinect2Scratch4Mac.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
