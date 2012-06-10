@@ -18,7 +18,7 @@ I recommend you this project for test: http://scratch.mit.edu/projects/SHowell/1
 
 ## How to build it?
 
-1. Download openFrameworks(version 007) from [here]("http://openframeworks.cc/download")
+1. Download openFrameworks(version 007, not 0071) from [here](http://www.openframeworks.cc/download/older.html)
 2. Unpack (1)
 3. Download Kinect2Scratch4Mac(this project) from [here]("https://github.com/mactkg/kinect2Scratch4Mac/zipball/master")
 4. Unpack (3)
