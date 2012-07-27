@@ -4,20 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Kinect2Scratch4Mac10.5.xcscheme</key>
+		<key>Kinect2Scratch4Mac.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
-		<key>Kinect2Scratch4Mac10.6.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>Kinect2Scratch4Mac10.7.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -28,6 +18,11 @@
 			<true/>
 		</dict>
 		<key>212AF6741573BA3C00EEC0B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>21C22DE315C286400075A106</key>
 		<dict>
 			<key>primary</key>
 			<true/>
