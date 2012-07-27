@@ -52,7 +52,7 @@ public:
 
 	float				filterFactor;
     
-    bool                 isKinect, isScratch, goKinect, goScratch;
+    bool                 isKinect, isScratch, goKinect, goScratch, newVal;
 };
 
 #endif

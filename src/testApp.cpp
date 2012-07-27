@@ -1,8 +1,9 @@
 #include "testApp.h"
 
-string jointNames[] = { "head", "neck", "l_shoulder", "l_elbow", "l_hand", 
+string oldJointNames[] = { "head", "neck", "l_shoulder", "l_elbow", "l_hand", 
                         "r_shoulder", "r_elbow", "r_hand", "torso", "l_hip",
                         "l_knee", "l_foot", "r_hip", "r_knee", "r_foot" };
+string newJointNames[] = {};
 
 //--------------------------------------------------------------
 void testApp::setup() {
@@ -15,11 +16,12 @@ void testApp::setup() {
     isScratch = false;
     goKinect = false;
     goScratch = false;
+    newVal = false;
     
     gui.addToggle("Kinect::Connect", goKinect);
     gui.addSlider("Kinect::Angle", hardware.tilt_angle, -30, 30);
     gui.addToggle("Scratch::Connect", goScratch);
-    
+    gui.addToggle("Send vals \nas K2S(1.5~)", newVal);
 
     gui.setup();
     gui.show();
@@ -176,10 +178,16 @@ void testApp::sendPoints(XnPoint3D position, int joint){
         points[0] = -2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
         points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
         points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
-
-        scratch.sensorUpdate(jointNames[joint] + "_x", ofToString(points[0]));
-        scratch.sensorUpdate(jointNames[joint] + "_y", ofToString(points[1]));
-        scratch.sensorUpdate(jointNames[joint] + "_z", ofToString(points[2]));
+        
+        if (newVal) {
+            scratch.sensorUpdate(newJointNames[joint] + "_x", ofToString(points[0]));
+            scratch.sensorUpdate(newJointNames[joint] + "_y", ofToString(points[1]));
+            scratch.sensorUpdate(newJointNames[joint] + "_z", ofToString(points[2]));
+        } else {
+            scratch.sensorUpdate(oldJointNames[joint] + "_x", ofToString(points[0]));
+            scratch.sensorUpdate(oldJointNames[joint] + "_y", ofToString(points[1]));
+            scratch.sensorUpdate(oldJointNames[joint] + "_z", ofToString(points[2]));
+        }
     }
 }
 
