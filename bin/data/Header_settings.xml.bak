@@ -1,0 +1,14 @@
+<controls>
+    <Button_title>
+        <name>1: SETTINGS</name>
+        <value>0</value>
+    </Button_title>
+    <Toggle_Auto_Save>
+        <name>Auto Save</name>
+        <value>1</value>
+    </Toggle_Auto_Save>
+    <Button_Save_Settings>
+        <name>Save Settings</name>
+        <value>0</value>
+    </Button_Save_Settings>
+</controls>
