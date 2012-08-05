@@ -75,9 +75,6 @@
 		21C22E2915C286400075A106 /* libXnVNite_1_5_2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 770F032414B9969E003CCE99 /* libXnVNite_1_5_2.dylib */; };
 		21C22E2C15C286400075A106 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		21C22E2E15C286400075A106 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 216AAA5D156FBF90002E7A62 /* icon.icns */; };
-		21C22E2F15C286400075A106 /* Instructions.txt in Resources */ = {isa = PBXBuildFile; fileRef = 216AAA62156FBFFF002E7A62 /* Instructions.txt */; };
-		21C22E3015C286400075A106 /* install.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216AAA63156FBFFF002E7A62 /* install.xml */; };
-		21C22E3115C286400075A106 /* install.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216AAA73156FBFFF002E7A62 /* install.xml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1102,9 +1099,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				21C22E2E15C286400075A106 /* icon.icns in Resources */,
-				21C22E2F15C286400075A106 /* Instructions.txt in Resources */,
-				21C22E3015C286400075A106 /* install.xml in Resources */,
-				21C22E3115C286400075A106 /* install.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
