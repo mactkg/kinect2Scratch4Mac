@@ -21,9 +21,9 @@ void testApp::setup() {
     newVal = false;
     
     gui.addToggle("Kinect::Connect", goKinect);
-    gui.addSlider("Kinect::Angle", hardware.tilt_angle, -30, 30);
     gui.addToggle("Scratch::Connect", goScratch);
-    gui.addToggle("Send vals \nas K2S(1.5~)", newVal);
+    gui.addSlider("Kinect::Angle", hardware.tilt_angle, -30, 30);
+    gui.addToggle("Send vals \nlike K2S(1.5~)", newVal);
 
     gui.setup();
     gui.show();
