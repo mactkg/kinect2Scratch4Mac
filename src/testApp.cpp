@@ -257,3 +257,11 @@ void testApp::windowResized(int w, int h){
 
 }
 
+void testApp::exit(){
+    if(isKinect){
+#if defined (TARGET_OSX)
+        hardware.shutDown();
+#endif
+        recordContext.shutdown();
+    }
+}

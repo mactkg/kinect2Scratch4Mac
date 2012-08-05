@@ -24,6 +24,7 @@ public:
 	void windowResized(int w, int h);
 
 	void	setupKinect();
+    void exit();
 
 	ofxOpenNIContext	recordContext;
 	ofxDepthGenerator	recordDepth;
