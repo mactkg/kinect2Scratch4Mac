@@ -80,7 +80,6 @@ void testApp::draw(){
     if(isKinect){
 
         ofSetColor(255, 255, 255);
-
         glPushMatrix();
         glScalef(0.75, 0.75, 0.75);
 
@@ -89,13 +88,10 @@ void testApp::draw(){
         recordDepth.draw(400, 150, 640, 480);
         
         glTranslatef(400, 150, 0);
-        
         recordUser.draw();
-        
         glTranslatef(0, 0, 0);
         
         glPopMatrix();
-
         ofSetColor(255, 255, 0);
 
         string statusHardware = "";
@@ -115,10 +111,7 @@ void testApp::draw(){
     #endif
 
         stringstream msg;
-
-        msg
-        << "FPS   : " << ofToString(ofGetFrameRate()) << "  " << statusHardware << endl;
-            
+        msg << "FPS   : " << ofToString(ofGetFrameRate()) << "  " << statusHardware << endl;
         ofDrawBitmapString(msg.str(), 20, 500);
     }
 }
