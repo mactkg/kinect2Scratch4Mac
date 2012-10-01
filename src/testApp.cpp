@@ -23,7 +23,7 @@ void testApp::setup() {
     gui.addToggle("Kinect::Connect", goKinect);
     gui.addToggle("Scratch::Connect", goScratch);
     gui.addSlider("Kinect::Angle", hardware.tilt_angle, -30, 30);
-    gui.addToggle("Send vals \nlike K2S(1.5~)", newVal);
+    gui.addToggle("New style\nvariable name\n(like k2s v1.5~)", newVal);
 
     gui.setup();
     gui.show();
@@ -151,7 +151,6 @@ void testApp::updateKinect(){
     // demo getting pixels from user gen
     
     allUserMasks.setFromPixels(recordUser.getUserPixels(), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
-    user1Mask.setFromPixels(recordUser.getUserPixels(1), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
     
     ofxTrackedUser* user = recordUser.getTrackedUser(1);
     sendPoints(user->neck.position[0], 0);
