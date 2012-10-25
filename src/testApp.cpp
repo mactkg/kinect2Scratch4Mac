@@ -13,107 +13,96 @@ void testApp::setup() {
 	nearThreshold = 500;
 	farThreshold  = 1000;
 
-	ofBackground(100, 100, 100);
+	ofBackground(100);
     isKinect = false;
     isScratch = false;
-    goKinect = false;
-    goScratch = false;
     newVal = false;
+    scale = 1.0;
     
-    gui.addToggle("Kinect::Connect", goKinect);
-    gui.addToggle("Scratch::Connect", goScratch);
-    gui.addSlider("Kinect::Angle", hardware.tilt_angle, -30, 30);
-    gui.addToggle("New style\nvariable name\n(like k2s v1.5~)", newVal);
-
     gui.setup();
-    gui.show();
+    gui.add(connectKinect.setup("Kinect::Connect", false));
+    gui.add(connectScratch.setup("Scratch::Connect", false));
+    gui.add(tilt_angle.setup("Scratch::Motor", 0, -30, 30));
     
+    connectKinect.addListener(this, &testApp::setupKinect);
+    connectScratch.addListener(this, &testApp::setupScratch);
 }
 
-void testApp::setupKinect() {
+void testApp::setupKinect(bool & dummy) {
 
 #if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
 	hardware.setup();				// libusb direct control of motor, LED and accelerometers
 	hardware.setLedOption(LED_OFF); // turn off the led just for yacks (or for live installation/performances ;-)
 #endif
-
-	recordContext.setup();	// all nodes created by code -> NOT using the xml config file at all
+    
+	recordContext.setup();
 	recordDepth.setup(&recordContext);
 
 	recordUser.setup(&recordContext);
-	recordUser.setSmoothing(0.1f);				// built in openni skeleton smoothing...
+	recordUser.setSmoothing(0.1f);
 	recordUser.setUseMaskPixels(true);
 	recordUser.setUseCloudPoints(false);
-	recordUser.setMaxNumberOfUsers(1);					// use this to set dynamic max number of users (NB: that a hard upper limit is defined by MAX_NUMBER_USERS in ofxUserGenerator)
-
+	recordUser.setMaxNumberOfUsers(1);
+    
     recordContext.toggleRegisterViewport();
 	recordContext.toggleMirror();
 
     isKinect = true;
 }
 
+void testApp::setupScratch(bool & dummy) {
+    scratch.setup();
+    isScratch = true;
+}
 
 //--------------------------------------------------------------
 void testApp::update(){
 
     if (isKinect) {
         updateKinect();
-    } else if(goKinect) {
-        setupKinect();
-    }
-    
+    }    
     if (isScratch) {
         scratch.update();
-    } else if(goScratch) {
-        scratch.setup();
-        isScratch = true;
     }
     
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    ofSetColor(220);
+    ofRect(ofGetWidth()-10, ofGetHeight()-10, 10, 10);
     
-    gui.draw();
-    ofRect(300, 112, 480, 360);
+    int rx = 50;
+    int ry = 50;
+    
+    glPushMatrix();
+    if(scale < 1.0) {
+        glScalef(scale, scale, 1.0f);
+    }
+    
+    ofRect(rx, ry, 640, 480);
     
     if(isKinect){
 
         ofSetColor(255, 255, 255);
-        glPushMatrix();
-        glScalef(0.75, 0.75, 0.75);
 
-        drawMasks();
+        drawMasks(rx, ry);
         
-        recordDepth.draw(400, 150, 640, 480);
+        recordDepth.draw(rx, ry, 640, 480);
         
-        glTranslatef(400, 150, 0);
+        glTranslatef(rx, ry, 0);
         recordUser.draw();
         glTranslatef(0, 0, 0);
         
-        glPopMatrix();
         ofSetColor(255, 255, 0);
-
-        string statusHardware = "";
-    
-    #ifdef TARGET_OSX // only working on Mac at the moment
-        ofPoint statusAccelerometers = hardware.getAccelerometers();
-        stringstream	statusHardwareStream;
-
-        statusHardwareStream
-        << "ACCELEROMETERS:"
-        << " TILT: " << hardware.getTiltAngle() << "/" << hardware.tilt_angle
-        << " x - " << statusAccelerometers.x
-        << " y - " << statusAccelerometers.y
-        << " z - " << statusAccelerometers.z;
-
-        statusHardware = statusHardwareStream.str();
-    #endif
-
-        stringstream msg;
-        msg << "FPS   : " << ofToString(ofGetFrameRate()) << "  " << statusHardware << endl;
-        ofDrawBitmapString(msg.str(), 20, 500);
+        
     }
+    glScalef(1.0f, 1.0f, 1.0f);
+    glPopMatrix();
+
+    ofPushMatrix();
+    gui.draw();
+    ofPopMatrix();
 }
 
 //-----------------------------------------------------//
@@ -125,9 +114,9 @@ void testApp::draw(){
 //-----------------------------------------------------//
 
 void testApp::updateKinect(){
-#ifdef TARGET_OSX // only working on Mac at the moment
+#ifdef TARGET_OSX // only working on Mac at the moment!!!
 	hardware.update();
-    hardware.setTiltAngle(hardware.tilt_angle);
+    hardware.setTiltAngle(tilt_angle);
 #endif
     
     // update all nodes
@@ -142,9 +131,9 @@ void testApp::updateKinect(){
     recordUser.update();
     
     // demo getting pixels from user gen
-    
     allUserMasks.setFromPixels(recordUser.getUserPixels(), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
     
+    // send joints data to scratch
     ofxTrackedUser* user = recordUser.getTrackedUser(1);
     sendPoints(user->neck.position[0], 0);
     sendPoints(user->neck.position[1], 1);
@@ -187,11 +176,11 @@ void testApp::sendPoints(XnPoint3D position, int joint){
 
 //--------------------------------------------------------------
 
-void testApp::drawMasks() {
+void testApp::drawMasks(int x, int y) {
 	glPushMatrix();
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);
-	allUserMasks.draw(400, 150, 640, 480);
+	allUserMasks.draw(x, y, 640, 480);
 	glDisable(GL_BLEND);
     glPopMatrix();
 
@@ -206,12 +195,12 @@ void testApp::keyPressed(int key){
 #ifdef TARGET_OSX // only working on Mac at the moment
 		case 357: // up key
             if(hardware.tilt_angle <= 30){
-                hardware.setTiltAngle(hardware.tilt_angle++);
+                hardware.setTiltAngle(tilt_angle++);
                 break;
             }
 		case 359: // down key
             if (hardware.tilt_angle >= -30) {
-                hardware.setTiltAngle(hardware.tilt_angle--);
+                hardware.setTiltAngle(tilt_angle--);
                 break;
             }
 #endif
@@ -246,7 +235,7 @@ void testApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
-
+    scale = w/800.0;
 }
 
 void testApp::exit(){
