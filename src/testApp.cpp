@@ -19,40 +19,15 @@ void testApp::setup() {
     newVal = false;
     scale = 1.0;
     
+    ofSetWindowTitle("Kinect2Scratch4Mac - v005");
+    
     gui.setup();
     gui.add(connectKinect.setup("Kinect::Connect", false));
     gui.add(connectScratch.setup("Scratch::Connect", false));
-    gui.add(tilt_angle.setup("Scratch::Motor", 0, -30, 30));
+    gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));
     
     connectKinect.addListener(this, &testApp::setupKinect);
     connectScratch.addListener(this, &testApp::setupScratch);
-}
-
-void testApp::setupKinect(bool & dummy) {
-
-#if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
-	hardware.setup();				// libusb direct control of motor, LED and accelerometers
-	hardware.setLedOption(LED_OFF); // turn off the led just for yacks (or for live installation/performances ;-)
-#endif
-    
-	recordContext.setup();
-	recordDepth.setup(&recordContext);
-
-	recordUser.setup(&recordContext);
-	recordUser.setSmoothing(0.1f);
-	recordUser.setUseMaskPixels(true);
-	recordUser.setUseCloudPoints(false);
-	recordUser.setMaxNumberOfUsers(1);
-    
-    recordContext.toggleRegisterViewport();
-	recordContext.toggleMirror();
-
-    isKinect = true;
-}
-
-void testApp::setupScratch(bool & dummy) {
-    scratch.setup();
-    isScratch = true;
 }
 
 //--------------------------------------------------------------
@@ -69,6 +44,7 @@ void testApp::update(){
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    //draw the lower right corner
     ofSetColor(220);
     ofRect(ofGetWidth()-10, ofGetHeight()-10, 10, 10);
     
@@ -105,6 +81,56 @@ void testApp::draw(){
     ofPopMatrix();
 }
 
+//--------------------------------------------------------------
+void testApp::keyPressed(int key){
+
+	switch (key) {
+#ifdef TARGET_OSX
+		case OF_KEY_UP:
+            if(hardware.tilt_angle <= 30){
+                hardware.setTiltAngle(tilt_angle++);
+                break;
+            }
+		case OF_KEY_DOWN:
+            if (hardware.tilt_angle >= -30) {
+                hardware.setTiltAngle(tilt_angle--);
+                break;
+            }
+#endif
+    }
+}
+
+
+//--------------------------------------------------------------
+void testApp::keyReleased(int key){
+
+}
+
+//--------------------------------------------------------------
+void testApp::mouseMoved(int x, int y ){
+
+}
+
+//--------------------------------------------------------------
+void testApp::mouseDragged(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void testApp::mousePressed(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void testApp::mouseReleased(int x, int y, int button){
+
+}
+
+//--------------------------------------------------------------
+void testApp::windowResized(int w, int h){
+    scale = w/800.0;
+}
+
 //-----------------------------------------------------//
 //    ----------------------------------------------   //
 //    \                                            /   //
@@ -113,6 +139,29 @@ void testApp::draw(){
 //                      /________\                     //
 //-----------------------------------------------------//
 
+void testApp::setupKinect(bool & dummy) {
+    
+#if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
+	hardware.setup();				// libusb direct control of motor, LED and accelerometers
+	hardware.setLedOption(LED_OFF); // turn off the led just for yacks (or for live installation/performances ;-)
+#endif
+    
+    recordContext.setup();
+    recordDepth.setup(&recordContext);
+    
+    recordUser.setup(&recordContext);
+    recordUser.setSmoothing(0.1f);
+    recordUser.setUseMaskPixels(true);
+    recordUser.setUseCloudPoints(false);
+    recordUser.setMaxNumberOfUsers(1);
+    
+    recordContext.toggleRegisterViewport();
+    recordContext.toggleMirror();
+    
+    isKinect = true;
+}
+
+//--------------------------------------------------------------
 void testApp::updateKinect(){
 #ifdef TARGET_OSX // only working on Mac at the moment!!!
 	hardware.update();
@@ -153,11 +202,10 @@ void testApp::updateKinect(){
 }
 
 //--------------------------------------------------------------
-
 void testApp::sendPoints(XnPoint3D position, int joint){
     if (isScratch) {
         int points[3];
-            
+        
         points[0] = -2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
         points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
         points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
@@ -175,7 +223,6 @@ void testApp::sendPoints(XnPoint3D position, int joint){
 }
 
 //--------------------------------------------------------------
-
 void testApp::drawMasks(int x, int y) {
 	glPushMatrix();
 	glEnable(GL_BLEND);
@@ -183,61 +230,16 @@ void testApp::drawMasks(int x, int y) {
 	allUserMasks.draw(x, y, 640, 480);
 	glDisable(GL_BLEND);
     glPopMatrix();
-
+    
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
-
-	float smooth;
-
-	switch (key) {
-#ifdef TARGET_OSX // only working on Mac at the moment
-		case 357: // up key
-            if(hardware.tilt_angle <= 30){
-                hardware.setTiltAngle(tilt_angle++);
-                break;
-            }
-		case 359: // down key
-            if (hardware.tilt_angle >= -30) {
-                hardware.setTiltAngle(tilt_angle--);
-                break;
-            }
-#endif
-    }
-}
-
-
-//--------------------------------------------------------------
-void testApp::keyReleased(int key){
-
+void testApp::setupScratch(bool & dummy) {
+    scratch.setup();
+    isScratch = true;
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
-
-}
-
-//--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
-
-}
-
-//--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
-    scale = w/800.0;
-}
-
 void testApp::exit(){
     if(isKinect){
 #if defined (TARGET_OSX)
