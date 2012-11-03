@@ -1,0 +1,11 @@
+HACKING
+=======
+
+Kinect2Scratch4Mac is depend on openFrameworks.  So you must move this folder the right place like this when you hack it:
+openFrameworks/apps/myapps/Kinect2Scratch4Mac/
+
+You can download openFrameworks from here:
+http://openFrameworks.cc/
+
+Kenta Hara a.k.a. mactkg
+mactkg@gmail.com
