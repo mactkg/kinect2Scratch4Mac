@@ -44,7 +44,7 @@
 		<h3>必要なもの</h3>
 		<ul>
       <li>Kinect</li>
-      <p>Xbox360に付いてくるKinectを使う場合は、Microsoftから変換アダプタを購入する必要があります。：<a href="#how-to-buy-converter">購入方法</a></p>
+      <p>Xbox360に付いてくるKinectを使う場合は、Microsoftから変換アダプタを購入する必要があります→<a href="#how-to-buy-converter">購入方法</a></p>
       <p>また、Kinect for WindowsはMacで動かすことが出来ないので、Kinect for Xbox360を使ってください。</p>
       <li>Mac OSX(10.6.8~, たぶん10.5.xでも動きます。確認はしてません。)</li>
       <li><a href="https://github.com/downloads/mactkg/kinect2Scratch4Mac/Kinect2Scratch4Mac_004_built.zip">Kinect2Scratch4Mac</a></li>
@@ -55,9 +55,10 @@
     <p>Scratchを起動して、調べるタブにある「リモートセンサー接続をオンにする」をクリックして、Kinect2Scratch4Macの「Scratch::Connect」をクリックすると、リモートセンサーの値としてKinectで検出した座標データがScratchに送信されます。</p>
     <p>なお、Kinectに人間を認識させるには<a href="https://skitch.com/makerbox/e8ycp/kinect-connect-to-scratch-on-mac-youtube">このポーズ</a>が必要なので、Kinectの前で<a href="https://skitch.com/makerbox/e8ycp/kinect-connect-to-scratch-on-mac-youtube">このポーズ</a>をしてください。</p>
     <p>動作テストのために、<a href="http://scratch.mit.edu/projects/SHowell/1523809">このプロジェクト</a>をおすすめします。</p>
+    <p>[!]もしうまく動かないときは<a href="#notrun">こちら</a></p>
 		<hr class="alt2" />		
 		
-		<h2>ダウンロード</h2>
+		<h2 id="download">ダウンロード</h2>
 		<ul>
 			<li><a href="https://github.com/downloads/mactkg/kinect2Scratch4Mac/Kinect2Scratch4Mac_004_built.zip">Kinect2Scratch4Mac(004)</a> (ビルド済み) ←おすすめ</li>
 			<li><a href="https://github.com/downloads/mactkg/kinect2Scratch4Mac/Kinect2Scratch4Mac_004_src.zip">Kinect2Scratch4Mac(004)</a> (自己ビルド用)</li>
@@ -70,6 +71,20 @@
     <p>Microsoftのサポートに電話し、KinectのUSB変換アダプタを購入したい旨を伝えればOKです。3830円で購入できる模様。</p>
     <p>Microsoft サポート：<a href="http://support.xbox.com/ja-JP/contact-us">http://support.xbox.com/ja-JP/contact-us</a></p>
 
+    <hr class="alt2" />
+    
+    <h2 id="notrun">Kinect2Scratch4Macが動かないときは</h2>
+    <p>自分でビルドをしてみるとうまく動くかもしれません。</p>
+    <h3>必要なもの</h3>
+    <ul>
+      <li>Xcode4.x</li>
+      <p>もしXcodeがなければ、<a href="http://itunes.apple.com/jp/app/xcode/id497799835?mt=12">ここ</a>から入手できます。インストールしてください。</p>
+    </ul>
+    <h3>ビルドをしてみる</h3>
+    <ol>
+      <li>自己ビルド版のKinect2Scratch4Macを<a href="#download">ダウンロード</a>します。</li>
+      <li>ダウンロードしたら解凍して、"instal.command"を実行します。（ダブルクリックでOK）</li>
+    </ol>
     <hr class="alt2" />
 		
 		<h2>Windowsをお使いですか？</h2>
