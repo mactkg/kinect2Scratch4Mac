@@ -8,6 +8,9 @@
 #include "ofxGui.h"
 #include "ofMain.h"
 
+const int defaultWidth = 800;
+const int defaultHeight = 600;
+
 class testApp : public ofBaseApp{
 
 public:
@@ -54,7 +57,7 @@ public:
 
 	float filterFactor;
     
-    bool isKinect, isScratch, newVal;
+    bool isKinect, isScratch, isGui, newVal;
     
     ofxPanel gui;
     ofxToggle connectScratch, connectKinect; //add new val
