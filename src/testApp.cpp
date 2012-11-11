@@ -9,22 +9,27 @@ string newJointNames[] = { "Head", "ShoulderCenter", "ShoulderLeft", "ElbowLeft"
 
 //--------------------------------------------------------------
 void testApp::setup() {
-    
 	nearThreshold = 500;
 	farThreshold  = 1000;
 
 	ofBackground(100);
     isKinect = false;
     isScratch = false;
+    isGui = true;
     newVal = false;
     scale = 1.0;
     
     ofSetWindowTitle("Kinect2Scratch4Mac - v005");
     
-    gui.setup();
-    gui.add(connectKinect.setup("Kinect::Connect", false));
-    gui.add(connectScratch.setup("Scratch::Connect", false));
+    gui.setup("toggle gui panel:g");
+    gui.add(connectKinect.setup("1:Kinect::Connect", false));
+    gui.add(connectScratch.setup("2:Scratch::Connect", false));
     gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));
+    
+    for (int i = 0; i < gui.getNumControls(); i++) {
+        ofxBaseGui* part = gui.getControl(i);
+        //write codes here
+    }
     
     connectKinect.addListener(this, &testApp::setupKinect);
     connectScratch.addListener(this, &testApp::setupScratch);
@@ -50,13 +55,15 @@ void testApp::draw(){
     
     int rx = 50;
     int ry = 50;
-    
+
     glPushMatrix();
     if(scale < 1.0) {
         glScalef(scale, scale, 1.0f);
     }
     
     ofRect(rx, ry, 640, 480);
+    
+    ofSetColor(255);
     
     if(isKinect){
 
@@ -76,9 +83,11 @@ void testApp::draw(){
     glScalef(1.0f, 1.0f, 1.0f);
     glPopMatrix();
 
-    ofPushMatrix();
-    gui.draw();
-    ofPopMatrix();
+    if(isGui){
+        ofPushMatrix();
+        gui.draw();
+        ofPopMatrix();
+    }
 }
 
 //--------------------------------------------------------------
@@ -97,13 +106,15 @@ void testApp::keyPressed(int key){
                 break;
             }
 #endif
+        case 'g':
+            isGui ? isGui = false : isGui = true;
     }
 }
 
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
@@ -128,7 +139,11 @@ void testApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
-    scale = w/800.0;
+    if(1.0*w/defaultWidth > 1.0*h/defaultHeight) {
+        scale = 1.0*h/defaultHeight;
+    } else {
+        scale = 1.0*w/defaultWidth;
+    }
 }
 
 //-----------------------------------------------------//
@@ -142,8 +157,8 @@ void testApp::windowResized(int w, int h){
 void testApp::setupKinect(bool & dummy) {
     
 #if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
-	hardware.setup();				// libusb direct control of motor, LED and accelerometers
-	hardware.setLedOption(LED_OFF); // turn off the led just for yacks (or for live installation/performances ;-)
+	hardware.setup();				
+	hardware.setLedOption(LED_OFF); 
 #endif
     
     recordContext.setup();
