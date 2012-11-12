@@ -19,7 +19,7 @@ void testApp::setup() {
     newVal = false;
     scale = 1.0;
     
-    ofSetWindowTitle("Kinect2Scratch4Mac - v005");
+    ofSetWindowTitle("Kinect2Scratch4Mac - v005b1");
     
     gui.setup("toggle gui panel:g");
     gui.add(connectKinect.setup("1:Kinect::Connect", false));
