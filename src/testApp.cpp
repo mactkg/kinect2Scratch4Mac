@@ -9,219 +9,112 @@ string newJointNames[] = { "Head", "ShoulderCenter", "ShoulderLeft", "ElbowLeft"
 
 //--------------------------------------------------------------
 void testApp::setup() {
-    
 	nearThreshold = 500;
 	farThreshold  = 1000;
 
-	ofBackground(100, 100, 100);
+	ofBackground(100);
     isKinect = false;
     isScratch = false;
-    goKinect = false;
-    goScratch = false;
+    isGui = true;
     newVal = false;
+    scale = 1.0;
     
-    gui.addToggle("Kinect::Connect", goKinect);
-    gui.addToggle("Scratch::Connect", goScratch);
-    gui.addSlider("Kinect::Angle", hardware.tilt_angle, -30, 30);
-    gui.addToggle("New style\nvariable name\n(like k2s v1.5~)", newVal);
-
-    gui.setup();
-    gui.show();
+    ofSetWindowTitle("Kinect2Scratch4Mac - v005b1");
     
+    gui.setup("toggle gui panel:g");
+    gui.add(connectKinect.setup("1:Kinect::Connect", false));
+    gui.add(connectScratch.setup("2:Scratch::Connect", false));
+    gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));
+    
+    for (int i = 0; i < gui.getNumControls(); i++) {
+        ofxBaseGui* part = gui.getControl(i);
+        //write codes here
+    }
+    
+    connectKinect.addListener(this, &testApp::setupKinect);
+    connectScratch.addListener(this, &testApp::setupScratch);
 }
-
-void testApp::setupKinect() {
-
-#if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
-	hardware.setup();				// libusb direct control of motor, LED and accelerometers
-	hardware.setLedOption(LED_OFF); // turn off the led just for yacks (or for live installation/performances ;-)
-#endif
-
-	recordContext.setup();	// all nodes created by code -> NOT using the xml config file at all
-	recordDepth.setup(&recordContext);
-
-	recordUser.setup(&recordContext);
-	recordUser.setSmoothing(0.1f);				// built in openni skeleton smoothing...
-	recordUser.setUseMaskPixels(true);
-	recordUser.setUseCloudPoints(false);
-	recordUser.setMaxNumberOfUsers(1);					// use this to set dynamic max number of users (NB: that a hard upper limit is defined by MAX_NUMBER_USERS in ofxUserGenerator)
-
-    recordContext.toggleRegisterViewport();
-	recordContext.toggleMirror();
-
-    isKinect = true;
-}
-
 
 //--------------------------------------------------------------
 void testApp::update(){
 
     if (isKinect) {
         updateKinect();
-    } else if(goKinect) {
-        setupKinect();
-    }
-    
+    }    
     if (isScratch) {
         scratch.update();
-    } else if(goScratch) {
-        scratch.setup();
-        isScratch = true;
     }
     
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
+    //draw the lower right corner
+    ofSetColor(220);
+    ofRect(ofGetWidth()-10, ofGetHeight()-10, 10, 10);
     
-    gui.draw();
-    ofRect(300, 112, 480, 360);
+    int rx = 50;
+    int ry = 50;
+
+    glPushMatrix();
+    if(scale < 1.0) {
+        glScalef(scale, scale, 1.0f);
+    }
+    
+    ofRect(rx, ry, 640, 480);
+    
+    ofSetColor(255);
     
     if(isKinect){
 
         ofSetColor(255, 255, 255);
-        glPushMatrix();
-        glScalef(0.75, 0.75, 0.75);
 
-        drawMasks();
+        drawMasks(rx, ry);
         
-        recordDepth.draw(400, 150, 640, 480);
+        recordDepth.draw(rx, ry, 640, 480);
         
-        glTranslatef(400, 150, 0);
+        glTranslatef(rx, ry, 0);
         recordUser.draw();
         glTranslatef(0, 0, 0);
         
-        glPopMatrix();
         ofSetColor(255, 255, 0);
-
-        string statusHardware = "";
-    
-    #ifdef TARGET_OSX // only working on Mac at the moment
-        ofPoint statusAccelerometers = hardware.getAccelerometers();
-        stringstream	statusHardwareStream;
-
-        statusHardwareStream
-        << "ACCELEROMETERS:"
-        << " TILT: " << hardware.getTiltAngle() << "/" << hardware.tilt_angle
-        << " x - " << statusAccelerometers.x
-        << " y - " << statusAccelerometers.y
-        << " z - " << statusAccelerometers.z;
-
-        statusHardware = statusHardwareStream.str();
-    #endif
-
-        stringstream msg;
-        msg << "FPS   : " << ofToString(ofGetFrameRate()) << "  " << statusHardware << endl;
-        ofDrawBitmapString(msg.str(), 20, 500);
-    }
-}
-
-//-----------------------------------------------------//
-//    ----------------------------------------------   //
-//    \                                            /   //
-//     \                                          /    //
-//      \________________________________________/     //
-//                      /________\                     //
-//-----------------------------------------------------//
-
-void testApp::updateKinect(){
-#ifdef TARGET_OSX // only working on Mac at the moment
-	hardware.update();
-    hardware.setTiltAngle(hardware.tilt_angle);
-#endif
-    
-    // update all nodes
-    recordContext.update();
-    recordDepth.update();
-    
-    // demo getting depth pixels directly from depth gen
-    depthRangeMask.setFromPixels(recordDepth.getDepthPixels(nearThreshold, farThreshold),
-                                 recordDepth.getWidth(), recordDepth.getHeight(), OF_IMAGE_GRAYSCALE);
-    
-    // update tracking/recording nodes
-    recordUser.update();
-    
-    // demo getting pixels from user gen
-    
-    allUserMasks.setFromPixels(recordUser.getUserPixels(), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
-    
-    ofxTrackedUser* user = recordUser.getTrackedUser(1);
-    sendPoints(user->neck.position[0], 0);
-    sendPoints(user->neck.position[1], 1);
-    sendPoints(user->left_shoulder.position[1], 2);
-    sendPoints(user->left_upper_arm.position[1], 3);
-    sendPoints(user->left_lower_arm.position[1], 4);
-    sendPoints(user->right_shoulder.position[1], 5);
-    sendPoints(user->right_upper_arm.position[1], 6);
-    sendPoints(user->right_lower_arm.position[1], 7);
-    sendPoints(user->left_upper_torso.position[1], 8);
-    sendPoints(user->left_lower_torso.position[1], 9);
-    sendPoints(user->left_upper_leg.position[1], 10);
-    sendPoints(user->left_lower_leg.position[1], 11);
-    sendPoints(user->right_lower_torso.position[1], 12);
-    sendPoints(user->right_upper_leg.position[1], 13);
-    sendPoints(user->right_lower_leg.position[1], 14);
-}
-
-//--------------------------------------------------------------
-
-void testApp::sendPoints(XnPoint3D position, int joint){
-    if (isScratch) {
-        int points[3];
-            
-        points[0] = -2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
-        points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
-        points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
         
-        if (newVal) {
-            scratch.sensorUpdate(newJointNames[joint] + "_x", ofToString(points[0]));
-            scratch.sensorUpdate(newJointNames[joint] + "_y", ofToString(points[1]));
-            scratch.sensorUpdate(newJointNames[joint] + "_z", ofToString(points[2]));
-        } else {
-            scratch.sensorUpdate(oldJointNames[joint] + "_x", ofToString(points[0]));
-            scratch.sensorUpdate(oldJointNames[joint] + "_y", ofToString(points[1]));
-            scratch.sensorUpdate(oldJointNames[joint] + "_z", ofToString(points[2]));
-        }
     }
-}
-
-//--------------------------------------------------------------
-
-void testApp::drawMasks() {
-	glPushMatrix();
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);
-	allUserMasks.draw(400, 150, 640, 480);
-	glDisable(GL_BLEND);
+    glScalef(1.0f, 1.0f, 1.0f);
     glPopMatrix();
 
+    if(isGui){
+        ofPushMatrix();
+        gui.draw();
+        ofPopMatrix();
+    }
 }
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
 
-	float smooth;
-
 	switch (key) {
-#ifdef TARGET_OSX // only working on Mac at the moment
-		case 357: // up key
+#ifdef TARGET_OSX
+		case OF_KEY_UP:
             if(hardware.tilt_angle <= 30){
-                hardware.setTiltAngle(hardware.tilt_angle++);
+                hardware.setTiltAngle(tilt_angle++);
                 break;
             }
-		case 359: // down key
+		case OF_KEY_DOWN:
             if (hardware.tilt_angle >= -30) {
-                hardware.setTiltAngle(hardware.tilt_angle--);
+                hardware.setTiltAngle(tilt_angle--);
                 break;
             }
 #endif
+        case 'g':
+            isGui ? isGui = false : isGui = true;
     }
 }
 
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-
+    
 }
 
 //--------------------------------------------------------------
@@ -246,9 +139,122 @@ void testApp::mouseReleased(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::windowResized(int w, int h){
-
+    if(1.0*w/defaultWidth > 1.0*h/defaultHeight) {
+        scale = 1.0*h/defaultHeight;
+    } else {
+        scale = 1.0*w/defaultWidth;
+    }
 }
 
+//-----------------------------------------------------//
+//    ----------------------------------------------   //
+//    \                                            /   //
+//     \                                          /    //
+//      \________________________________________/     //
+//                      /________\                     //
+//-----------------------------------------------------//
+
+void testApp::setupKinect(bool & dummy) {
+    
+#if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
+	hardware.setup();				
+	hardware.setLedOption(LED_OFF); 
+#endif
+    
+    recordContext.setup();
+    recordDepth.setup(&recordContext);
+    
+    recordUser.setup(&recordContext);
+    recordUser.setSmoothing(0.1f);
+    recordUser.setUseMaskPixels(true);
+    recordUser.setUseCloudPoints(false);
+    recordUser.setMaxNumberOfUsers(1);
+    
+    recordContext.toggleRegisterViewport();
+    recordContext.toggleMirror();
+    
+    isKinect = true;
+}
+
+//--------------------------------------------------------------
+void testApp::updateKinect(){
+#ifdef TARGET_OSX // only working on Mac at the moment!!!
+	hardware.update();
+    hardware.setTiltAngle(tilt_angle);
+#endif
+    
+    // update all nodes
+    recordContext.update();
+    recordDepth.update();
+    
+    // demo getting depth pixels directly from depth gen
+    depthRangeMask.setFromPixels(recordDepth.getDepthPixels(nearThreshold, farThreshold),
+                                 recordDepth.getWidth(), recordDepth.getHeight(), OF_IMAGE_GRAYSCALE);
+    
+    // update tracking/recording nodes
+    recordUser.update();
+    
+    // demo getting pixels from user gen
+    allUserMasks.setFromPixels(recordUser.getUserPixels(), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
+    
+    // send joints data to scratch
+    ofxTrackedUser* user = recordUser.getTrackedUser(1);
+    sendPoints(user->neck.position[0], 0);
+    sendPoints(user->neck.position[1], 1);
+    sendPoints(user->left_shoulder.position[1], 2);
+    sendPoints(user->left_upper_arm.position[1], 3);
+    sendPoints(user->left_lower_arm.position[1], 4);
+    sendPoints(user->right_shoulder.position[1], 5);
+    sendPoints(user->right_upper_arm.position[1], 6);
+    sendPoints(user->right_lower_arm.position[1], 7);
+    sendPoints(user->left_upper_torso.position[1], 8);
+    sendPoints(user->left_lower_torso.position[1], 9);
+    sendPoints(user->left_upper_leg.position[1], 10);
+    sendPoints(user->left_lower_leg.position[1], 11);
+    sendPoints(user->right_lower_torso.position[1], 12);
+    sendPoints(user->right_upper_leg.position[1], 13);
+    sendPoints(user->right_lower_leg.position[1], 14);
+}
+
+//--------------------------------------------------------------
+void testApp::sendPoints(XnPoint3D position, int joint){
+    if (isScratch) {
+        int points[3];
+        
+        points[0] = -2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
+        points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
+        points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
+        
+        if (newVal) {
+            scratch.sensorUpdate(newJointNames[joint] + "_x", ofToString(points[0]));
+            scratch.sensorUpdate(newJointNames[joint] + "_y", ofToString(points[1]));
+            scratch.sensorUpdate(newJointNames[joint] + "_z", ofToString(points[2]));
+        } else {
+            scratch.sensorUpdate(oldJointNames[joint] + "_x", ofToString(points[0]));
+            scratch.sensorUpdate(oldJointNames[joint] + "_y", ofToString(points[1]));
+            scratch.sensorUpdate(oldJointNames[joint] + "_z", ofToString(points[2]));
+        }
+    }
+}
+
+//--------------------------------------------------------------
+void testApp::drawMasks(int x, int y) {
+	glPushMatrix();
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);
+	allUserMasks.draw(x, y, 640, 480);
+	glDisable(GL_BLEND);
+    glPopMatrix();
+    
+}
+
+//--------------------------------------------------------------
+void testApp::setupScratch(bool & dummy) {
+    scratch.setup();
+    isScratch = true;
+}
+
+//--------------------------------------------------------------
 void testApp::exit(){
     if(isKinect){
 #if defined (TARGET_OSX)
