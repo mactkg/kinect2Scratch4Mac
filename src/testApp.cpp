@@ -16,15 +16,15 @@ void testApp::setup() {
     isKinect = false;
     isScratch = false;
     isGui = true;
-    newVal = false;
     scale = 1.0;
     
     ofSetWindowTitle("Kinect2Scratch4Mac - v005b1");
     
-    gui.setup("toggle gui panel:g");
+    gui.setup("Toggle gui panel:g");
     gui.add(connectKinect.setup("1:Kinect::Connect", false));
     gui.add(connectScratch.setup("2:Scratch::Connect", false));
     gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));
+    gui.add(oldValues.setup("Old style value name", true));
     
     for (int i = 0; i < gui.getNumControls(); i++) {
         ofxBaseGui* part = gui.getControl(i);
@@ -225,14 +225,14 @@ void testApp::sendPoints(XnPoint3D position, int joint){
         points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
         points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
         
-        if (newVal) {
-            scratch.sensorUpdate(newJointNames[joint] + "_x", ofToString(points[0]));
-            scratch.sensorUpdate(newJointNames[joint] + "_y", ofToString(points[1]));
-            scratch.sensorUpdate(newJointNames[joint] + "_z", ofToString(points[2]));
-        } else {
+        if (oldValues) {
             scratch.sensorUpdate(oldJointNames[joint] + "_x", ofToString(points[0]));
             scratch.sensorUpdate(oldJointNames[joint] + "_y", ofToString(points[1]));
             scratch.sensorUpdate(oldJointNames[joint] + "_z", ofToString(points[2]));
+        } else {
+            scratch.sensorUpdate(newJointNames[joint] + "_x", ofToString(points[0]));
+            scratch.sensorUpdate(newJointNames[joint] + "_y", ofToString(points[1]));
+            scratch.sensorUpdate(newJointNames[joint] + "_z", ofToString(points[2]));
         }
     }
 }
