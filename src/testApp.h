@@ -31,23 +31,10 @@ public:
     void updateKinect();
     void exit();
 
-	ofxOpenNIContext recordContext;
-	ofxDepthGenerator recordDepth;
-
-#ifdef USE_IR
-	ofxIRGenerator recordImage;
-#else
-	ofxImageGenerator recordImage;
-#endif
-
-	ofxUserGenerator recordUser;
-
-#if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
-	ofxHardwareDriver	hardware;
-#endif
+	ofxOpenNI kinect;
     
     ofxScratch scratch;
-    void sendPoints(XnPoint3D position, int joint);
+    void sendPoints(ofPoint position, int joint);
 	void drawMasks(int x, int y);
 
 	int nearThreshold, farThreshold;

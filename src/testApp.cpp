@@ -1,10 +1,10 @@
 #include "testApp.h"
 
-string oldJointNames[] = { "head", "neck", "l_shoulder", "l_elbow", "l_hand", 
-                        "r_shoulder", "r_elbow", "r_hand", "torso", "l_hip",
+string oldJointNames[] = {"neck", "torso", "head", "l_shoulder", "l_elbow",
+                        "l_hand", "r_shoulder", "r_elbow", "r_hand", "l_hip",
                         "l_knee", "l_foot", "r_hip", "r_knee", "r_foot" };
-string newJointNames[] = { "Head", "ShoulderCenter", "ShoulderLeft", "ElbowLeft", "HandLeft",
-                        "ShoulderRight", "ElbowRight", "HandRight", "Spine", "HipLeft",
+string newJointNames[] = {"Spine", "ShoulderCenter", "Head", "ShoulderLeft", "ElbowLeft",
+                        "HandLeft", "ShoulderRight", "ElbowRight", "HandRight", "HipLeft",
                         "KneeLeft", "FootLeft", "HipRight", "KneeRight", "FootRight"};
 
 //--------------------------------------------------------------
@@ -24,7 +24,7 @@ void testApp::setup() {
     gui.setup("toggle gui panel:g");
     gui.add(connectKinect.setup("1:Kinect::Connect", false));
     gui.add(connectScratch.setup("2:Scratch::Connect", false));
-    gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));
+    //gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));  yet
     
     for (int i = 0; i < gui.getNumControls(); i++) {
         ofxBaseGui* part = gui.getControl(i);
@@ -39,8 +39,9 @@ void testApp::setup() {
 void testApp::update(){
 
     if (isKinect) {
+        kinect.update();
         updateKinect();
-    }    
+    }
     if (isScratch) {
         scratch.update();
     }
@@ -68,14 +69,13 @@ void testApp::draw(){
     if(isKinect){
 
         ofSetColor(255, 255, 255);
-
-        drawMasks(rx, ry);
         
-        recordDepth.draw(rx, ry, 640, 480);
+        kinect.drawDepth(rx, ry, 640, 480);
+        kinect.drawSkeletons(rx, ry, 640, 480);
         
-        glTranslatef(rx, ry, 0);
-        recordUser.draw();
-        glTranslatef(0, 0, 0);
+        //glTranslatef(rx, ry, 0);
+        //Recorder.draw();
+        //glTranslatef(0, 0, 0);
         
         ofSetColor(255, 255, 0);
         
@@ -94,18 +94,6 @@ void testApp::draw(){
 void testApp::keyPressed(int key){
 
 	switch (key) {
-#ifdef TARGET_OSX
-		case OF_KEY_UP:
-            if(hardware.tilt_angle <= 30){
-                hardware.setTiltAngle(tilt_angle++);
-                break;
-            }
-		case OF_KEY_DOWN:
-            if (hardware.tilt_angle >= -30) {
-                hardware.setTiltAngle(tilt_angle--);
-                break;
-            }
-#endif
         case 'g':
             isGui ? isGui = false : isGui = true;
     }
@@ -155,75 +143,45 @@ void testApp::windowResized(int w, int h){
 //-----------------------------------------------------//
 
 void testApp::setupKinect(bool & dummy) {
+    // kinect.setup();
+    kinect.setupFromXML(ofToDataPath("openni/config/modules.xml"));
+    kinect.setRegister(true);
+    kinect.setMirror(true);
+    kinect.addDepthGenerator();
+    kinect.addImageGenerator();
+    kinect.addUserGenerator();
+    kinect.setMaxNumUsers(2);
+    kinect.start();
     
-#if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
-	hardware.setup();				
-	hardware.setLedOption(LED_OFF); 
-#endif
     
-    recordContext.setup();
-    recordDepth.setup(&recordContext);
-    
-    recordUser.setup(&recordContext);
-    recordUser.setSmoothing(0.1f);
-    recordUser.setUseMaskPixels(true);
-    recordUser.setUseCloudPoints(false);
-    recordUser.setMaxNumberOfUsers(1);
-    
-    recordContext.toggleRegisterViewport();
-    recordContext.toggleMirror();
     
     isKinect = true;
 }
 
 //--------------------------------------------------------------
-void testApp::updateKinect(){
-#ifdef TARGET_OSX // only working on Mac at the moment!!!
-	hardware.update();
-    hardware.setTiltAngle(tilt_angle);
-#endif
-    
-    // update all nodes
-    recordContext.update();
-    recordDepth.update();
-    
-    // demo getting depth pixels directly from depth gen
-    depthRangeMask.setFromPixels(recordDepth.getDepthPixels(nearThreshold, farThreshold),
-                                 recordDepth.getWidth(), recordDepth.getHeight(), OF_IMAGE_GRAYSCALE);
-    
-    // update tracking/recording nodes
-    recordUser.update();
-    
-    // demo getting pixels from user gen
-    allUserMasks.setFromPixels(recordUser.getUserPixels(), recordUser.getWidth(), recordUser.getHeight(), OF_IMAGE_GRAYSCALE);
+void testApp::updateKinect(){ //->sendLimbs?
     
     // send joints data to scratch
-    ofxTrackedUser* user = recordUser.getTrackedUser(1);
-    sendPoints(user->neck.position[0], 0);
-    sendPoints(user->neck.position[1], 1);
-    sendPoints(user->left_shoulder.position[1], 2);
-    sendPoints(user->left_upper_arm.position[1], 3);
-    sendPoints(user->left_lower_arm.position[1], 4);
-    sendPoints(user->right_shoulder.position[1], 5);
-    sendPoints(user->right_upper_arm.position[1], 6);
-    sendPoints(user->right_lower_arm.position[1], 7);
-    sendPoints(user->left_upper_torso.position[1], 8);
-    sendPoints(user->left_lower_torso.position[1], 9);
-    sendPoints(user->left_upper_leg.position[1], 10);
-    sendPoints(user->left_lower_leg.position[1], 11);
-    sendPoints(user->right_lower_torso.position[1], 12);
-    sendPoints(user->right_upper_leg.position[1], 13);
-    sendPoints(user->right_lower_leg.position[1], 14);
+    for (int i = 0; i < kinect.getNumTrackedUsers(); i++) {
+        ofxOpenNIUser &user = kinect.getTrackedUser(i);
+        ofLogNotice() << user.getDebugInfo() << endl;
+        for (int j = 0; j < user.getNumJoints(); j++) {
+            ofxOpenNIJoint &joint = user.getJoint(Joint(j));
+            ofLogNotice() << joint.getName() << endl;
+            sendPoints(joint.getProjectivePosition(), j);
+        }
+    }
 }
 
 //--------------------------------------------------------------
-void testApp::sendPoints(XnPoint3D position, int joint){
+void testApp::sendPoints(ofPoint position, int joint){
     if (isScratch) {
         int points[3];
+        xn::DepthGenerator depthGen = kinect.getDepthGenerator();
         
-        points[0] = -2 * (0.5 - (double)position.X / recordDepth.getWidth()) *240;
-        points[1] = 2 * (0.5 - (double)position.Y / recordDepth.getHeight()) *180;
-        points[2] = 2 * (0.5 - (double)position.Z / recordDepth.getMaxDepth()) *180;
+        points[0] = -2 * (0.5 - (double)position.x / kinect.getWidth()) *240;
+        points[1] = 2 * (0.5 - (double)position.y / kinect.getHeight()) *180;
+        points[2] = 2 * (0.5 - (double)position.z / depthGen.GetDeviceMaxDepth()) *180;
         
         if (newVal) {
             scratch.sensorUpdate(newJointNames[joint] + "_x", ofToString(points[0]));
@@ -257,9 +215,6 @@ void testApp::setupScratch(bool & dummy) {
 //--------------------------------------------------------------
 void testApp::exit(){
     if(isKinect){
-#if defined (TARGET_OSX)
-        hardware.shutDown();
-#endif
-        recordContext.shutdown();
+        kinect.stop();
     }
 }
