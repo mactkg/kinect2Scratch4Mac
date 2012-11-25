@@ -16,15 +16,15 @@ void testApp::setup() {
     isKinect = false;
     isScratch = false;
     isGui = true;
-    newVal = false;
     scale = 1.0;
     
     ofSetWindowTitle("Kinect2Scratch4Mac - v005b3");
     
-    gui.setup("toggle gui panel:g");
+    gui.setup("Toggle gui panel:g");
     gui.add(connectKinect.setup("1:Kinect::Connect", false));
     gui.add(connectScratch.setup("2:Scratch::Connect", false));
     //gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));  yet
+    gui.add(oldValues.setup("Old style value name", false));
     
     for (int i = 0; i < gui.getNumControls(); i++) {
         ofxBaseGui* part = gui.getControl(i);
@@ -168,14 +168,19 @@ void testApp::updateKinect(){ //->sendLimbs?
         for (int j = 0; j < user.getNumJoints(); j++) {
             ofxOpenNIJoint &joint = user.getJoint(Joint(j));
             ofLogNotice() << joint.getName() << endl;
-            sendPoints(joint.getProjectivePosition(), j);
+            sendPoints(joint.getProjectivePosition(), j, i);
         }
     }
 }
 
 //--------------------------------------------------------------
-void testApp::sendPoints(ofPoint position, int joint){
+void testApp::sendPoints(ofPoint position, int joint, int n){
     if (isScratch) {
+        n++;
+        string number = "";
+        if(n != 1)
+            number = "_" + ofToString(n);
+        
         int points[3];
         xn::DepthGenerator depthGen = kinect.getDepthGenerator();
         
@@ -183,14 +188,14 @@ void testApp::sendPoints(ofPoint position, int joint){
         points[1] = 2 * (0.5 - (double)position.y / kinect.getHeight()) *180;
         points[2] = 2 * (0.5 - (double)position.z / depthGen.GetDeviceMaxDepth()) *180;
         
-        if (newVal) {
-            scratch.sensorUpdate(newJointNames[joint] + "_x", ofToString(points[0]));
-            scratch.sensorUpdate(newJointNames[joint] + "_y", ofToString(points[1]));
-            scratch.sensorUpdate(newJointNames[joint] + "_z", ofToString(points[2]));
+        if (oldValues) {
+            scratch.sensorUpdate(oldJointNames[joint] + "_x" + number, ofToString(points[0]));
+            scratch.sensorUpdate(oldJointNames[joint] + "_y" + number, ofToString(points[1]));
+            scratch.sensorUpdate(oldJointNames[joint] + "_z" + number, ofToString(points[2]));
         } else {
-            scratch.sensorUpdate(oldJointNames[joint] + "_x", ofToString(points[0]));
-            scratch.sensorUpdate(oldJointNames[joint] + "_y", ofToString(points[1]));
-            scratch.sensorUpdate(oldJointNames[joint] + "_z", ofToString(points[2]));
+            scratch.sensorUpdate(newJointNames[joint] + "_x" + number, ofToString(points[0]));
+            scratch.sensorUpdate(newJointNames[joint] + "_y" + number, ofToString(points[1]));
+            scratch.sensorUpdate(newJointNames[joint] + "_z" + number, ofToString(points[2]));
         }
     }
 }

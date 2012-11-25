@@ -34,7 +34,7 @@ public:
 	ofxOpenNI kinect;
     
     ofxScratch scratch;
-    void sendPoints(ofPoint position, int joint);
+    void sendPoints(ofPoint position, int joint, int n);
 	void drawMasks(int x, int y);
 
 	int nearThreshold, farThreshold;
@@ -44,10 +44,10 @@ public:
 
 	float filterFactor;
     
-    bool isKinect, isScratch, isGui, newVal;
+    bool isKinect, isScratch, isGui;
     
     ofxPanel gui;
-    ofxToggle connectScratch, connectKinect; //add new val
+    ofxToggle connectScratch, connectKinect, oldValues; //add new val
     ofxIntSlider tilt_angle;
     float scale;
 };
