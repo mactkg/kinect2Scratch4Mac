@@ -9,9 +9,7 @@ string newJointNames[] = {"Spine", "ShoulderCenter", "Head", "ShoulderLeft", "El
 
 //--------------------------------------------------------------
 void testApp::setup() {
-	nearThreshold = 500;
-	farThreshold  = 1000;
-
+    //init
 	ofBackground(100);
     isKinect = false;
     isScratch = false;
@@ -20,6 +18,7 @@ void testApp::setup() {
     
     ofSetWindowTitle("Kinect2Scratch4Mac - v005b3");
     
+    //GUI
     gui.setup("Toggle gui panel:g");
     gui.add(connectKinect.setup("1:Kinect::Connect", false));
     gui.add(connectScratch.setup("2:Scratch::Connect", false));
@@ -28,9 +27,10 @@ void testApp::setup() {
     
     for (int i = 0; i < gui.getNumControls(); i++) {
         ofxBaseGui* part = gui.getControl(i);
-        //write codes here
+        //write codes for setting here
     }
     
+    //Event listener
     connectKinect.addListener(this, &testApp::setupKinect);
     connectScratch.addListener(this, &testApp::setupScratch);
 }
@@ -39,7 +39,6 @@ void testApp::setup() {
 void testApp::update(){
 
     if (isKinect) {
-        kinect.update();
         updateKinect();
     }
     if (isScratch) {
@@ -159,15 +158,17 @@ void testApp::setupKinect(bool & dummy) {
 }
 
 //--------------------------------------------------------------
-void testApp::updateKinect(){ //->sendLimbs?
+void testApp::updateKinect(){
+    //grab data
+    kinect.update();
     
     // send joints data to scratch
     for (int i = 0; i < kinect.getNumTrackedUsers(); i++) {
         ofxOpenNIUser &user = kinect.getTrackedUser(i);
-        ofLogNotice() << user.getDebugInfo() << endl;
+        ofLogNotice() << user.getDebugInfo() << endl; //debugging
         for (int j = 0; j < user.getNumJoints(); j++) {
             ofxOpenNIJoint &joint = user.getJoint(Joint(j));
-            ofLogNotice() << joint.getName() << endl;
+            ofLogNotice() << joint.getName() << endl; //debugging
             sendPoints(joint.getProjectivePosition(), j, i);
         }
     }
@@ -176,18 +177,22 @@ void testApp::updateKinect(){ //->sendLimbs?
 //--------------------------------------------------------------
 void testApp::sendPoints(ofPoint position, int joint, int n){
     if (isScratch) {
+        //numbering
         n++;
         string number = "";
         if(n != 1)
             number = "_" + ofToString(n);
         
+        
         int points[3];
         xn::DepthGenerator depthGen = kinect.getDepthGenerator();
         
+        //converting points for Scratch
         points[0] = -2 * (0.5 - (double)position.x / kinect.getWidth()) *240;
         points[1] = 2 * (0.5 - (double)position.y / kinect.getHeight()) *180;
         points[2] = 2 * (0.5 - (double)position.z / depthGen.GetDeviceMaxDepth()) *180;
         
+        //Send values!
         if (oldValues) {
             scratch.sensorUpdate(oldJointNames[joint] + "_x" + number, ofToString(points[0]));
             scratch.sensorUpdate(oldJointNames[joint] + "_y" + number, ofToString(points[1]));
@@ -198,17 +203,6 @@ void testApp::sendPoints(ofPoint position, int joint, int n){
             scratch.sensorUpdate(newJointNames[joint] + "_z" + number, ofToString(points[2]));
         }
     }
-}
-
-//--------------------------------------------------------------
-void testApp::drawMasks(int x, int y) {
-	glPushMatrix();
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);
-	allUserMasks.draw(x, y, 640, 480);
-	glDisable(GL_BLEND);
-    glPopMatrix();
-    
 }
 
 //--------------------------------------------------------------

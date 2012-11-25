@@ -481,8 +481,8 @@
 				216F361E165E13DA00D62604 /* src */,
 			);
 			name = ofxOpenNI;
-			path = "../../../myApps/ofxOpenNI2-k2s4m/src/ofxOpenNI";
-			sourceTree = "<group>";
+			path = ../../myApps/kinect2Scratch4Mac/src/ofxOpenNI;
+			sourceTree = SOURCE_ROOT;
 		};
 		216F357F165E13DA00D62604 /* include */ = {
 			isa = PBXGroup;
@@ -711,7 +711,7 @@
 				216F361C165E13DA00D62604 /* libXnVNite_1_5_2.dylib */,
 			);
 			name = lib;
-			path = mac/copy_to_data_openni_path/lib;
+			path = ../../bin/data/openni/lib;
 			sourceTree = "<group>";
 		};
 		216F361E165E13DA00D62604 /* src */ = {

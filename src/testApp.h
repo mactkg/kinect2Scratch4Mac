@@ -1,8 +1,6 @@
 #ifndef _TEST_APP
 #define _TEST_APP
 
-//#define USE_IR // Uncomment this to use infra red instead of RGB cam...
-
 #include "ofxOpenNI.h"
 #include "ofxScratch.h"
 #include "ofxGui.h"
@@ -31,24 +29,20 @@ public:
     void updateKinect();
     void exit();
 
+    //Kinect
 	ofxOpenNI kinect;
+    bool isKinect;
     
+    //Scratch
     ofxScratch scratch;
     void sendPoints(ofPoint position, int joint, int n);
-	void drawMasks(int x, int y);
-
-	int nearThreshold, farThreshold;
-	int pointCloudRotationY;
-
-	ofImage allUserMasks, user1Mask, user2Mask, depthRangeMask;
-
-	float filterFactor;
+    bool isScratch;
     
-    bool isKinect, isScratch, isGui;
-    
+    //GUI
     ofxPanel gui;
-    ofxToggle connectScratch, connectKinect, oldValues; //add new val
+    ofxToggle connectScratch, connectKinect, oldValues;
     ofxIntSlider tilt_angle;
+    bool isGui;
     float scale;
 };
 
