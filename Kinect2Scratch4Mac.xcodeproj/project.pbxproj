@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		216565B01663AE7A00BCFC36 /* ofxHardwareDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216565AE1663AE7A00BCFC36 /* ofxHardwareDriver.cpp */; };
 		216F366A165E13DB00D62604 /* libnimCodecs.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F360F165E13DA00D62604 /* libnimCodecs.dylib */; };
 		216F366B165E13DB00D62604 /* libnimMockNodes.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F3610165E13DA00D62604 /* libnimMockNodes.dylib */; };
 		216F366C165E13DB00D62604 /* libnimRecorder.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F3611165E13DA00D62604 /* libnimRecorder.dylib */; };
@@ -103,6 +104,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		216565AE1663AE7A00BCFC36 /* ofxHardwareDriver.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxHardwareDriver.cpp; sourceTree = "<group>"; };
+		216565AF1663AE7A00BCFC36 /* ofxHardwareDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxHardwareDriver.h; sourceTree = "<group>"; };
 		216AA9FD156FBF7C002E7A62 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		216AA9FE156FBF7C002E7A62 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		216AA9FF156FBF7C002E7A62 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -855,6 +858,8 @@
 		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				216565AE1663AE7A00BCFC36 /* ofxHardwareDriver.cpp */,
+				216565AF1663AE7A00BCFC36 /* ofxHardwareDriver.h */,
 				216F3537165E13DA00D62604 /* ofxOpenNI */,
 				21819FD916387FA600336015 /* ofxGui */,
 				216AA9FC156FBF7C002E7A62 /* ofxScratch */,
@@ -1005,6 +1010,7 @@
 				21819FEF16387FA600336015 /* ofxToggle.cpp in Sources */,
 				216F3679165E13DC00D62604 /* ofxOpenNI.cpp in Sources */,
 				216F367A165E13DC00D62604 /* ofxOpenNITypes.cpp in Sources */,
+				216565B01663AE7A00BCFC36 /* ofxHardwareDriver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
