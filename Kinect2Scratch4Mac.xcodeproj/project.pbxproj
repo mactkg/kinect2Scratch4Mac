@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		216565B01663AE7A00BCFC36 /* ofxHardwareDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216565AE1663AE7A00BCFC36 /* ofxHardwareDriver.cpp */; };
+		216565C11663CC0300BCFC36 /* FeatureExtraction.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D3165E320600D62604 /* FeatureExtraction.ini */; };
+		216565C21663CC0300BCFC36 /* GlobalDefaultsKinect.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D4165E320600D62604 /* GlobalDefaultsKinect.ini */; };
+		216565C31663CC0300BCFC36 /* h.dat in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D5165E320600D62604 /* h.dat */; };
+		216565C41663CC0300BCFC36 /* licenses.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D6165E320600D62604 /* licenses.xml */; };
+		216565C51663CC0300BCFC36 /* Nite.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D8165E320600D62604 /* Nite.ini */; };
+		216565C61663CC0300BCFC36 /* ofxopenni_config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D9165E320600D62604 /* ofxopenni_config.xml */; };
+		216565C71663CC0300BCFC36 /* s.dat in Resources */ = {isa = PBXBuildFile; fileRef = 216F36DA165E320600D62604 /* s.dat */; };
+		216565C81663CC0300BCFC36 /* SamplesConfig.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36DB165E320600D62604 /* SamplesConfig.xml */; };
+		216565C91663CC0300BCFC36 /* SceneServer.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36DC165E320600D62604 /* SceneServer.ini */; };
 		216F366A165E13DB00D62604 /* libnimCodecs.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F360F165E13DA00D62604 /* libnimCodecs.dylib */; };
 		216F366B165E13DB00D62604 /* libnimMockNodes.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F3610165E13DA00D62604 /* libnimMockNodes.dylib */; };
 		216F366C165E13DB00D62604 /* libnimRecorder.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F3611165E13DA00D62604 /* libnimRecorder.dylib */; };
@@ -24,20 +33,7 @@
 		216F3677165E13DC00D62604 /* libXnVNite_1_5_2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F361C165E13DA00D62604 /* libXnVNite_1_5_2.dylib */; };
 		216F3679165E13DC00D62604 /* ofxOpenNI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F361F165E13DA00D62604 /* ofxOpenNI.cpp */; };
 		216F367A165E13DC00D62604 /* ofxOpenNITypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F3621165E13DA00D62604 /* ofxOpenNITypes.cpp */; };
-		216F36DD165E320600D62604 /* lbsdata.idx in Resources */ = {isa = PBXBuildFile; fileRef = 216F36CF165E320600D62604 /* lbsdata.idx */; };
-		216F36DE165E320600D62604 /* lbsdata.lbd in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D0165E320600D62604 /* lbsdata.lbd */; };
-		216F36DF165E320600D62604 /* lbsparam1.lbd in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D1165E320600D62604 /* lbsparam1.lbd */; };
-		216F36E0165E320600D62604 /* lbsparam2.lbd in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D2165E320600D62604 /* lbsparam2.lbd */; };
-		216F36E1165E320600D62604 /* FeatureExtraction.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D3165E320600D62604 /* FeatureExtraction.ini */; };
-		216F36E2165E320600D62604 /* GlobalDefaultsKinect.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D4165E320600D62604 /* GlobalDefaultsKinect.ini */; };
-		216F36E3165E320600D62604 /* h.dat in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D5165E320600D62604 /* h.dat */; };
-		216F36E4165E320600D62604 /* licenses.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D6165E320600D62604 /* licenses.xml */; };
 		216F36E5165E320600D62604 /* modules.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D7165E320600D62604 /* modules.xml */; };
-		216F36E6165E320600D62604 /* Nite.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D8165E320600D62604 /* Nite.ini */; };
-		216F36E7165E320600D62604 /* ofxopenni_config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D9165E320600D62604 /* ofxopenni_config.xml */; };
-		216F36E8165E320600D62604 /* s.dat in Resources */ = {isa = PBXBuildFile; fileRef = 216F36DA165E320600D62604 /* s.dat */; };
-		216F36E9165E320600D62604 /* SamplesConfig.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36DB165E320600D62604 /* SamplesConfig.xml */; };
-		216F36EA165E320600D62604 /* SceneServer.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36DC165E320600D62604 /* SceneServer.ini */; };
 		21819FEA16387FA600336015 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21819FDD16387FA600336015 /* ofxBaseGui.cpp */; };
 		21819FEB16387FA600336015 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21819FDF16387FA600336015 /* ofxButton.cpp */; };
 		21819FEC16387FA600336015 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21819FE216387FA600336015 /* ofxLabel.cpp */; };
@@ -950,21 +946,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				216565C11663CC0300BCFC36 /* FeatureExtraction.ini in Resources */,
+				216565C21663CC0300BCFC36 /* GlobalDefaultsKinect.ini in Resources */,
+				216565C31663CC0300BCFC36 /* h.dat in Resources */,
+				216565C41663CC0300BCFC36 /* licenses.xml in Resources */,
+				216565C51663CC0300BCFC36 /* Nite.ini in Resources */,
+				216565C61663CC0300BCFC36 /* ofxopenni_config.xml in Resources */,
+				216565C71663CC0300BCFC36 /* s.dat in Resources */,
+				216565C81663CC0300BCFC36 /* SamplesConfig.xml in Resources */,
+				216565C91663CC0300BCFC36 /* SceneServer.ini in Resources */,
 				21C22E2E15C286400075A106 /* icon.icns in Resources */,
-				216F36DD165E320600D62604 /* lbsdata.idx in Resources */,
-				216F36DE165E320600D62604 /* lbsdata.lbd in Resources */,
-				216F36DF165E320600D62604 /* lbsparam1.lbd in Resources */,
-				216F36E0165E320600D62604 /* lbsparam2.lbd in Resources */,
-				216F36E1165E320600D62604 /* FeatureExtraction.ini in Resources */,
-				216F36E2165E320600D62604 /* GlobalDefaultsKinect.ini in Resources */,
-				216F36E3165E320600D62604 /* h.dat in Resources */,
-				216F36E4165E320600D62604 /* licenses.xml in Resources */,
 				216F36E5165E320600D62604 /* modules.xml in Resources */,
-				216F36E6165E320600D62604 /* Nite.ini in Resources */,
-				216F36E7165E320600D62604 /* ofxopenni_config.xml in Resources */,
-				216F36E8165E320600D62604 /* s.dat in Resources */,
-				216F36E9165E320600D62604 /* SamplesConfig.xml in Resources */,
-				216F36EA165E320600D62604 /* SceneServer.ini in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
