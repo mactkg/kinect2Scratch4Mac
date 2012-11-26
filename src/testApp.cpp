@@ -147,10 +147,10 @@ void testApp::windowResized(int w, int h){
 void testApp::setupKinect(bool & dummy) {    
     // kinect.setup();
     kinect.setupFromXML(ofToDataPath("openni/config/modules.xml"));
-    kinect.setRegister(true);
-    kinect.setMirror(true);
     kinect.addDepthGenerator();
     kinect.addImageGenerator();
+    kinect.setRegister(true);
+    kinect.setMirror(true);
     kinect.addUserGenerator();
     kinect.setMaxNumUsers(2);
     kinect.start();  
