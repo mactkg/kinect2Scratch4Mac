@@ -72,10 +72,6 @@ void testApp::draw(){
         kinect.drawDepth(rx, ry, 640, 480);
         kinect.drawSkeletons(rx, ry, 640, 480);
         
-        //glTranslatef(rx, ry, 0);
-        //Recorder.draw();
-        //glTranslatef(0, 0, 0);
-        
         ofSetColor(255, 255, 0);
         
     }
@@ -176,7 +172,7 @@ void testApp::updateKinect(){
         ofLogNotice() << user.getDebugInfo() << endl; //debugging
         for (int j = 0; j < user.getNumJoints(); j++) {
             ofxOpenNIJoint &joint = user.getJoint(Joint(j));
-            ofLogNotice() << joint.getName() << endl; //debugging
+            ofLogNotice() << joint.getName() << "," << joint.getProjectivePosition().x; ; //debugging
             sendPoints(joint.getProjectivePosition(), j, i);
         }
     }
@@ -191,7 +187,7 @@ void testApp::sendPoints(ofPoint position, int joint, int n){
         n++;
         string number = "";
         if(n != 1)
-            number = "_" + ofToString(n);
+            number = ofToString(n);
         
         
         int points[3];
