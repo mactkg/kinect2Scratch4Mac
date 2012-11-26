@@ -22,7 +22,7 @@ void testApp::setup() {
     gui.setup("Toggle gui panel:g");
     gui.add(connectKinect.setup("1:Kinect::Connect", false));
     gui.add(connectScratch.setup("2:Scratch::Connect", false));
-    //gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));  yet
+    gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));
     gui.add(oldValues.setup("Old style value name", false));
     
     for (int i = 0; i < gui.getNumControls(); i++) {
@@ -93,8 +93,15 @@ void testApp::draw(){
 void testApp::keyPressed(int key){
 
 	switch (key) {
+        case OF_KEY_UP:
+            tilt_angle++;
+            break;
+        case OF_KEY_DOWN:
+            tilt_angle--;
+            break;
         case 'g':
             isGui ? isGui = false : isGui = true;
+            break;
     }
 }
 
@@ -141,7 +148,7 @@ void testApp::windowResized(int w, int h){
 //                      /________\                     //
 //-----------------------------------------------------//
 
-void testApp::setupKinect(bool & dummy) {
+void testApp::setupKinect(bool & dummy) {    
     // kinect.setup();
     kinect.setupFromXML(ofToDataPath("openni/config/modules.xml"));
     kinect.setRegister(true);
@@ -150,9 +157,9 @@ void testApp::setupKinect(bool & dummy) {
     kinect.addImageGenerator();
     kinect.addUserGenerator();
     kinect.setMaxNumUsers(2);
-    kinect.start();
+    kinect.start();  
     
-    
+    dev_kinect.setup();
     
     isKinect = true;
 }
@@ -161,6 +168,7 @@ void testApp::setupKinect(bool & dummy) {
 void testApp::updateKinect(){
     //grab data
     kinect.update();
+    dev_kinect.update();
     
     // send joints data to scratch
     for (int i = 0; i < kinect.getNumTrackedUsers(); i++) {
@@ -172,6 +180,8 @@ void testApp::updateKinect(){
             sendPoints(joint.getProjectivePosition(), j, i);
         }
     }
+    
+    dev_kinect.setTiltAngle(tilt_angle);
 }
 
 //--------------------------------------------------------------
@@ -215,5 +225,6 @@ void testApp::setupScratch(bool & dummy) {
 void testApp::exit(){
     if(isKinect){
         kinect.stop();
+        dev_kinect.shutDown();
     }
 }

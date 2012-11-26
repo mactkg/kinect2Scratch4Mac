@@ -1,6 +1,7 @@
 #ifndef _TEST_APP
 #define _TEST_APP
 
+#include "ofxHardwareDriver.h"
 #include "ofxOpenNI.h"
 #include "ofxScratch.h"
 #include "ofxGui.h"
@@ -31,6 +32,7 @@ public:
 
     //Kinect
 	ofxOpenNI kinect;
+    ofxHardwareDriver dev_kinect;
     bool isKinect;
     
     //Scratch
