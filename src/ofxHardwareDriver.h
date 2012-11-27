@@ -98,6 +98,8 @@ public:
 	ofPoint	getAccelerometers();
 	
 	int		tilt_angle;
+    
+    bool getIsDevice();
 	
 	void shutDown();
     
@@ -109,6 +111,7 @@ private:
 	
 	raw_tilt_state tilt_state;
 	
+    bool isDevice;
 };
 
 #endif

@@ -37,7 +37,8 @@ ofxHardwareDriver::ofxHardwareDriver() {
 }
 
 ofxHardwareDriver::~ofxHardwareDriver() {
-	shutDown();
+    if(isDevice)
+        shutDown();
 }
 
 void ofxHardwareDriver::setup(int index)
@@ -93,7 +94,7 @@ void ofxHardwareDriver::setup(int index)
 	// strange behaviour if the kinect is tilted in between 
 	// application starts eg., the angle continues to be set 
 	// even when app not running...which is odd...
-	
+	isDevice = true;
 }
 
 void ofxHardwareDriver::update() 
@@ -161,6 +162,10 @@ void ofxHardwareDriver::setLedOption(uint16_t option)
 	}
 }
 
+bool ofxHardwareDriver::getIsDevice() {
+    return isDevice;
+}
+
 void ofxHardwareDriver::shutDown() {
 	//setTiltAngle(0);	// leaving this reset out for now as that way installations 
 						// do not need to be reset ever startup however can cause 
@@ -168,6 +173,7 @@ void ofxHardwareDriver::shutDown() {
 						// application starts eg., the angle continues to be set 
 						// even when app not running...which is odd...
 	libusb_exit(ctx);
+    isDevice = false;
 }
 
 #endif
