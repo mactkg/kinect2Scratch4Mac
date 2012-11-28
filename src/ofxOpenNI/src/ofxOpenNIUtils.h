@@ -145,23 +145,33 @@ enum Joint {
     JOINT_HEAD,
 
     // left arm + shoulder
+    JOINT_LEFT_COLLAR,
     JOINT_LEFT_SHOULDER,
     JOINT_LEFT_ELBOW,
+    JOINT_LEFT_WRIST,
     JOINT_LEFT_HAND,
+    JOINT_LEFT_FINGERTIP,
 
     // right arm + shoulder
+    JOINT_RIGHT_COLLAR,
     JOINT_RIGHT_SHOULDER,
     JOINT_RIGHT_ELBOW,
+    JOINT_RIGHT_WRIST,
     JOINT_RIGHT_HAND,
+    JOINT_RIGHT_FINGERTIP,
+    
+    JOINT_WAIST,
 
     // left leg
     JOINT_LEFT_HIP,
     JOINT_LEFT_KNEE,
+    JOINT_LEFT_ANKLE,
     JOINT_LEFT_FOOT,
 
     // right leg
     JOINT_RIGHT_HIP,
     JOINT_RIGHT_KNEE,
+    JOINT_RIGHT_ANKLE,
     JOINT_RIGHT_FOOT,
 
     JOINT_COUNT,
@@ -616,30 +626,30 @@ inline Joint XnToOfJoint(XnSkeletonJoint type){
         case XN_SKEL_LEFT_ELBOW:
 			return JOINT_LEFT_ELBOW;
             break;
-//        case XN_SKEL_LEFT_COLLAR:
-//			return "XN_SKEL_LEFT_COLLAR";
-//			break;
-//        case XN_SKEL_LEFT_WRIST:
-//			return "XN_SKEL_LEFT_WRIST";
-//			break;
-//		case XN_SKEL_LEFT_FINGERTIP:
-//			return "XN_SKEL_LEFT_FINGERTIP";
-//			break;
-//        case XN_SKEL_RIGHT_COLLAR:
-//			return "XN_SKEL_RIGHT_COLLAR";
-//			break;
-//        case XN_SKEL_RIGHT_WRIST:
-//			return "XN_SKEL_RIGHT_WRIST";
-//			break;
-//        case XN_SKEL_RIGHT_FINGERTIP:
-//			return "XN_SKEL_RIGHT_FINGERTIP";
-//			break;
+        case XN_SKEL_LEFT_COLLAR:
+			return JOINT_LEFT_COLLAR;
+			break;
+        case XN_SKEL_LEFT_WRIST:
+			return JOINT_LEFT_WRIST;
+			break;
+		case XN_SKEL_LEFT_FINGERTIP:
+			return JOINT_LEFT_FINGERTIP;
+			break;
+        case XN_SKEL_RIGHT_COLLAR:
+			return JOINT_RIGHT_COLLAR;
+			break;
+        case XN_SKEL_RIGHT_WRIST:
+			return JOINT_RIGHT_WRIST;
+			break;
+        case XN_SKEL_RIGHT_FINGERTIP:
+			return JOINT_RIGHT_FINGERTIP;
+			break;
         case XN_SKEL_TORSO:
 			return JOINT_TORSO;
 			break;
-//        case XN_SKEL_WAIST:
-//			return "XN_SKEL_WAIST";
-//			break;
+        case XN_SKEL_WAIST:
+			return JOINT_WAIST;
+			break;
         case XN_SKEL_LEFT_HIP:
 			return JOINT_LEFT_HIP;
 			break;
@@ -658,12 +668,12 @@ inline Joint XnToOfJoint(XnSkeletonJoint type){
         case XN_SKEL_RIGHT_FOOT:
 			return JOINT_RIGHT_FOOT;
 			break;
-//        case XN_SKEL_LEFT_ANKLE:
-//			return "XN_SKEL_LEFT_ANKLE";
-//			break;
-//        case XN_SKEL_RIGHT_ANKLE:
-//			return "XN_SKEL_RIGHT_ANKLE";
-//			break;
+        case XN_SKEL_LEFT_ANKLE:
+			return JOINT_LEFT_ANKLE;
+			break;
+        case XN_SKEL_RIGHT_ANKLE:
+			return JOINT_RIGHT_ANKLE;
+			break;
 		default:
 			return JOINT_UNKOWN;
 			break;
@@ -760,12 +770,23 @@ inline string getJointAsString(Joint type){
 		case JOINT_NECK:
 			return "JOINT_NECK";
 			break;
+        case JOINT_LEFT_FINGERTIP:
+            return "JOINT_LEFT_FINGERTIP";
+            break;
+        case JOINT_RIGHT_FINGERTIP:
+            return "JOINT_RIGHT_FINGERTIP";
         case JOINT_LEFT_HAND:
 			return "JOINT_LEFT_HAND";
 			break;
         case JOINT_RIGHT_HAND:
 			return "JOINT_RIGHT_HAND";
 			break;
+        case JOINT_LEFT_WRIST:
+            return "JOINT_LEFT_WRIST";
+            break;
+        case JOINT_RIGHT_WRIST:
+            return "JOINT_RIGHT_WRIST";
+            break;
 		case JOINT_LEFT_SHOULDER:
 			return "JOINT_LEFT_SHOULDER";
 			break;
@@ -778,9 +799,18 @@ inline string getJointAsString(Joint type){
         case JOINT_LEFT_ELBOW:
 			return "JOINT_LEFT_ELBOW";
 			break;
+        case JOINT_LEFT_COLLAR:
+            return "JOINT_LEFT_COLLAR";
+            break;
+        case JOINT_RIGHT_COLLAR:
+            return "JOINT_RIGHT_COLLAR";
+            break;
         case JOINT_TORSO:
 			return "JOINT_TORSO";
 			break;
+        case JOINT_WAIST:
+            return "JOINT_WAIST";
+            break;
         case JOINT_LEFT_HIP:
 			return "JOINT_LEFT_HIP";
 			break;
@@ -790,12 +820,18 @@ inline string getJointAsString(Joint type){
         case JOINT_LEFT_FOOT:
 			return "JOINT_LEFT_FOOT";
 			break;
+        case JOINT_LEFT_ANKLE:
+            return "JOINT_LEFT_ANKLE";
+            break;
         case JOINT_RIGHT_HIP:
 			return "JOINT_RIGHT_HIP";
 			break;
         case JOINT_RIGHT_KNEE:
 			return "JOINT_RIGHT_KNEE";
 			break;
+        case JOINT_RIGHT_ANKLE:
+            return "JOINT_RIGHT_ANKLE";
+            break;
         case JOINT_RIGHT_FOOT:
 			return "JOINT_RIGHT_FOOT";
 			break;
