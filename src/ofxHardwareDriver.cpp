@@ -34,6 +34,7 @@
 
 ofxHardwareDriver::ofxHardwareDriver() {
 	printf("Init lib_usb control of Kinect Motor, LEDs and accelerometers");
+    isDevice = false;
 }
 
 ofxHardwareDriver::~ofxHardwareDriver() {
