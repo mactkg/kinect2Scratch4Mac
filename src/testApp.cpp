@@ -3,9 +3,10 @@
 string oldJointNames[] = {"neck", "torso", "head", "l_shoulder", "l_elbow",
                         "l_hand", "r_shoulder", "r_elbow", "r_hand", "l_hip",
                         "l_knee", "l_foot", "r_hip", "r_knee", "r_foot" };
-string newJointNames[] = {"Spine", "ShoulderCenter", "Head", "ShoulderLeft", "ElbowLeft",
-                        "HandLeft", "ShoulderRight", "ElbowRight", "HandRight", "HipLeft",
-                        "KneeLeft", "FootLeft", "HipRight", "KneeRight", "FootRight"};
+string newJointNames[] = {"Spine", "ShoulderCenter", "Head", "CollarLeft", "ShoulderLeft", "ElbowLeft",
+                        "WristLeft", "HandLeft", "FingertipLeft", "CollarLeft", "ShoulderRight", "ElbowRight",
+                        "WristRight", "HandRight", "FingertipRight", "HipCenter", "HipLeft", "KneeLeft",
+                        "AnkleLeft", "FootLeft", "HipRight", "KneeRight", "AnkleRight", "FootRight"};
 
 //--------------------------------------------------------------
 void testApp::setup() {
