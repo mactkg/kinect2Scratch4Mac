@@ -153,9 +153,11 @@ void testApp::setupKinect(bool & dummy) {
     kinect.setMirror(true);
     kinect.addUserGenerator();
     kinect.setMaxNumUsers(2);
+    kinect.setSafeThreading(true);
     kinect.start();  
     
     dev_kinect.setup();
+    tilt_angle = dev_kinect.getTiltAngle();
     
     isKinect = true;
 }
