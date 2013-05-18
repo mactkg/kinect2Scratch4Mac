@@ -16,7 +16,7 @@ void testApp::setup() {
     isGui = true;
     scale = 1.0;
     
-    ofSetWindowTitle("Kinect2Scratch4Mac - v005b3");
+    ofSetWindowTitle("Kinect2Scratch4Mac - v005b4");
     
     //GUI
     gui.setup("Toggle gui panel:g");
