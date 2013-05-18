@@ -1,16 +1,16 @@
 #include "testApp.h"
 
-string oldJointNames[] = {"neck", "torso", "head", "l_shoulder", "l_elbow",
+string oldJointNames[] = {"torso", "neck", "head", "l_shoulder", "l_elbow",
                         "l_hand", "r_shoulder", "r_elbow", "r_hand", "l_hip",
                         "l_knee", "l_foot", "r_hip", "r_knee", "r_foot" };
-string newJointNames[] = {"Spine", "ShoulderCenter", "Head", "ShoulderLeft", "ElbowLeft",
+string newJointNames[] = {"ShoulderCenter", "Spine", "Head", "ShoulderLeft", "ElbowLeft",
                         "HandLeft", "ShoulderRight", "ElbowRight", "HandRight", "HipLeft",
                         "KneeLeft", "FootLeft", "HipRight", "KneeRight", "FootRight"};
 
 //--------------------------------------------------------------
 void testApp::setup() {
     //init
-	ofBackground(100);
+    ofBackground(100);
     isKinect = false;
     isScratch = false;
     isGui = true;
@@ -73,7 +73,6 @@ void testApp::draw(){
         kinect.drawSkeletons(rx, ry, 640, 480);
         
         ofSetColor(255, 255, 0);
-        
     }
     glScalef(1.0f, 1.0f, 1.0f);
     glPopMatrix();
@@ -145,7 +144,7 @@ void testApp::windowResized(int w, int h){
 //-----------------------------------------------------//
 
 void testApp::setupKinect(bool & dummy) {    
-    // kinect.setup();
+    kinect.setup();
     kinect.setupFromXML(ofToDataPath("openni/config/modules.xml"));
     kinect.addDepthGenerator();
     kinect.addImageGenerator();
