@@ -8,15 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		216565B01663AE7A00BCFC36 /* ofxHardwareDriver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216565AE1663AE7A00BCFC36 /* ofxHardwareDriver.cpp */; };
-		216565C11663CC0300BCFC36 /* FeatureExtraction.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D3165E320600D62604 /* FeatureExtraction.ini */; };
-		216565C21663CC0300BCFC36 /* GlobalDefaultsKinect.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D4165E320600D62604 /* GlobalDefaultsKinect.ini */; };
-		216565C31663CC0300BCFC36 /* h.dat in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D5165E320600D62604 /* h.dat */; };
-		216565C41663CC0300BCFC36 /* licenses.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D6165E320600D62604 /* licenses.xml */; };
-		216565C51663CC0300BCFC36 /* Nite.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D8165E320600D62604 /* Nite.ini */; };
-		216565C61663CC0300BCFC36 /* ofxopenni_config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D9165E320600D62604 /* ofxopenni_config.xml */; };
-		216565C71663CC0300BCFC36 /* s.dat in Resources */ = {isa = PBXBuildFile; fileRef = 216F36DA165E320600D62604 /* s.dat */; };
-		216565C81663CC0300BCFC36 /* SamplesConfig.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36DB165E320600D62604 /* SamplesConfig.xml */; };
-		216565C91663CC0300BCFC36 /* SceneServer.ini in Resources */ = {isa = PBXBuildFile; fileRef = 216F36DC165E320600D62604 /* SceneServer.ini */; };
 		216F366A165E13DB00D62604 /* libnimCodecs.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F360F165E13DA00D62604 /* libnimCodecs.dylib */; };
 		216F366B165E13DB00D62604 /* libnimMockNodes.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F3610165E13DA00D62604 /* libnimMockNodes.dylib */; };
 		216F366C165E13DB00D62604 /* libnimRecorder.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F3611165E13DA00D62604 /* libnimRecorder.dylib */; };
@@ -33,7 +24,6 @@
 		216F3677165E13DC00D62604 /* libXnVNite_1_5_2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 216F361C165E13DA00D62604 /* libXnVNite_1_5_2.dylib */; };
 		216F3679165E13DC00D62604 /* ofxOpenNI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F361F165E13DA00D62604 /* ofxOpenNI.cpp */; };
 		216F367A165E13DC00D62604 /* ofxOpenNITypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216F3621165E13DA00D62604 /* ofxOpenNITypes.cpp */; };
-		216F36E5165E320600D62604 /* modules.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216F36D7165E320600D62604 /* modules.xml */; };
 		21819FEA16387FA600336015 /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21819FDD16387FA600336015 /* ofxBaseGui.cpp */; };
 		21819FEB16387FA600336015 /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21819FDF16387FA600336015 /* ofxButton.cpp */; };
 		21819FEC16387FA600336015 /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21819FE216387FA600336015 /* ofxLabel.cpp */; };
@@ -66,7 +56,7 @@
 		21C22E1A15C286400075A106 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424510CC5A17004149E2 /* Cocoa.framework */; };
 		21C22E1B15C286400075A106 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424610CC5A17004149E2 /* IOKit.framework */; };
 		21C22E2C15C286400075A106 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
-		21C22E2E15C286400075A106 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 216AAA5D156FBF90002E7A62 /* icon.icns */; };
+		377DE4F71B5BEDD7009A5C5B /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 216AAA5D156FBF90002E7A62 /* icon.icns */; };
 		37A020361B5B629100E4BF38 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A020351B5B629100E4BF38 /* CoreVideo.framework */; };
 /* End PBXBuildFile section */
 
@@ -892,7 +882,7 @@
 				21C22E0D15C286400075A106 /* Frameworks */,
 				21C22E2A15C286400075A106 /* ShellScript */,
 				21C22E2B15C286400075A106 /* CopyFiles */,
-				21C22E2D15C286400075A106 /* Resources */,
+				377DE4F61B5BEDD5009A5C5B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -948,21 +938,11 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		21C22E2D15C286400075A106 /* Resources */ = {
+		377DE4F61B5BEDD5009A5C5B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				216565C11663CC0300BCFC36 /* FeatureExtraction.ini in Resources */,
-				216565C21663CC0300BCFC36 /* GlobalDefaultsKinect.ini in Resources */,
-				216565C31663CC0300BCFC36 /* h.dat in Resources */,
-				216565C41663CC0300BCFC36 /* licenses.xml in Resources */,
-				216565C51663CC0300BCFC36 /* Nite.ini in Resources */,
-				216565C61663CC0300BCFC36 /* ofxopenni_config.xml in Resources */,
-				216565C71663CC0300BCFC36 /* s.dat in Resources */,
-				216565C81663CC0300BCFC36 /* SamplesConfig.xml in Resources */,
-				216565C91663CC0300BCFC36 /* SceneServer.ini in Resources */,
-				21C22E2E15C286400075A106 /* icon.icns in Resources */,
-				216F36E5165E320600D62604 /* modules.xml in Resources */,
+				377DE4F71B5BEDD7009A5C5B /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -981,7 +961,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -f ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ncp -f bin/data/openni/lib/libnimCodecs.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libnimCodecs.dylib\";\ncp -f bin/data/openni/lib/libnimMockNodes.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libnimMockNodes.dylib\";\ncp -f bin/data/openni/lib/libnimRecorder.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libnimRecorder.dylib\";\ncp -f bin/data/openni/lib/libOpenNI.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libOpenNI.dylib\";\ncp -f bin/data/openni/lib/libusb-1.0.0.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libusb-1.0.0.dylib\";\ncp -f bin/data/openni/lib/libXnCore.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnCore.dylib\";\ncp -f bin/data/openni/lib/libXnDDK.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnDDK.dylib\";\ncp -f bin/data/openni/lib/libXnDeviceFile.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnDeviceFile.dylib\";\ncp -f bin/data/openni/lib/libXnDeviceSensorV2KM.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnDeviceSensorV2KM.dylib\";\ncp -f bin/data/openni/lib/libXnFormats.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnFormats.dylib\";\ncp -f bin/data/openni/lib/libXnVCNITE_1_5_2.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnVCNITE_1_5_2.dylib\";\ncp -f bin/data/openni/lib/libXnVFeatures_1_5_2.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnVFeatures_1_5_2.dylib\";\ncp -f bin/data/openni/lib/libXnVHandGenerator_1_5_2.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnVHandGenerator_1_5_2.dylib\";\ncp -f bin/data/openni/lib/libXnVNite_1_5_2.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnVNite_1_5_2.dylib\";\n\n\n\nin=\"install_name_tool -change \"\n\ncd \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/\"\n\nlibs=(*.dylib)\nnum_libs=${#libs[*]}\n    \nfor lib in *.dylib ; do\n    i=0\n    echo \"\"\n    echo \"${lib}\"\n    echo \"-------------------------------------------------\"\n    lines=`otool -L  ${lib}`\n    echo ${lines}\n    for linked_name in ${lines} ; do\n        for local_lib in ${libs[@]}; do\n            in=`echo ${linked_name} | grep -i ${local_lib}`\n            if [ \"$in\" != \"\" ] ; then\n                check_id=`echo \"${linked_name}\" | grep -i \"${lib}\"`\n                \n                if [ \"$check_id\" != \"\" ] ; then\n                    install_name_tool -id  \"@executable_path/./${local_lib}\" ${lib}\n                    echo install_name_tool -id  \"@executable_path/./${local_lib}\" ${lib}\n                else\n                    install_name_tool -change \"${linked_name}\" \"@executable_path/./${local_lib}\" ${lib}\n                    echo  install_name_tool -change \"${linked_name}\" \"@executable_path/./${local_lib}\" ${lib}\n                fi\n            fi\n        done\n    done\ndone\n\napp_lines=`otool -L $PRODUCT_NAME`\necho ${app_lines}\nfor linked_name in ${app_lines} ; do\n    for local_lib in ${libs[@]} ; do\n        in=`echo ${linked_name} | grep -i ${local_lib}`\n        if [ \"$in\" != \"\" ] ; then\n            check_id=`echo \"${linked_name}\" | grep -i \"$PRODUCT_NAME\"`\n            if [ \"$check_id\" != \"\" ] ; then\n                install_name_tool -id  \"@executable_path/./${local_lib}\" $PRODUCT_NAME\n                echo install_name_tool -id  \"@executable_path/./${local_lib}\" $PRODUCT_NAME\n            else\n                install_name_tool -change \"${linked_name}\" \"@executable_path/./${local_lib}\" $PRODUCT_NAME\n                echo  install_name_tool -change \"${linked_name}\" \"@executable_path/./${local_lib}\" $PRODUCT_NAME\n            fi\n        fi\n    done\ndone\n";
+			shellScript = "cp -f ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";";
 		};
 /* End PBXShellScriptBuildPhase section */
 
