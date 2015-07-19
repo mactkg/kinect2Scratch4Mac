@@ -67,6 +67,7 @@
 		21C22E1B15C286400075A106 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424610CC5A17004149E2 /* IOKit.framework */; };
 		21C22E2C15C286400075A106 /* GLUT.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
 		21C22E2E15C286400075A106 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 216AAA5D156FBF90002E7A62 /* icon.icns */; };
+		37A020361B5B629100E4BF38 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37A020351B5B629100E4BF38 /* CoreVideo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -306,6 +307,7 @@
 		21819FE816387FA600336015 /* ofxToggle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToggle.cpp; sourceTree = "<group>"; };
 		21819FE916387FA600336015 /* ofxToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxToggle.h; sourceTree = "<group>"; };
 		21C22E3515C286400075A106 /* Kinect2Scratch4Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kinect2Scratch4Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		37A020351B5B629100E4BF38 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		BBAB23BE13894E4700AA2426 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = ../../../libs/glut/lib/osx/GLUT.framework; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
@@ -333,6 +335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37A020361B5B629100E4BF38 /* CoreVideo.framework in Frameworks */,
 				21C22E0E15C286400075A106 /* GLUT.framework in Frameworks */,
 				21C22E0F15C286400075A106 /* openFrameworksDebug.a in Frameworks */,
 				21C22E1015C286400075A106 /* AGL.framework in Frameworks */,
@@ -798,6 +801,7 @@
 		BBAB23C913894ECA00AA2426 /* system frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37A020351B5B629100E4BF38 /* CoreVideo.framework */,
 				E4C2424410CC5A17004149E2 /* AppKit.framework */,
 				E4C2424510CC5A17004149E2 /* Cocoa.framework */,
 				E4C2424610CC5A17004149E2 /* IOKit.framework */,
@@ -905,6 +909,8 @@
 /* Begin PBXProject section */
 		E4B69B4C0A3A1720003C02F2 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "Kinect2Scratch4Mac" */;
 			compatibilityVersion = "Xcode 2.4";
 			developmentRegion = English;
@@ -971,10 +977,11 @@
 			inputPaths = (
 			);
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/myfile",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp -f ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";";
+			shellScript = "cp -f ../../../libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libfmodex.dylib\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\ncp -f bin/data/openni/lib/libnimCodecs.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libnimCodecs.dylib\";\ncp -f bin/data/openni/lib/libnimMockNodes.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libnimMockNodes.dylib\";\ncp -f bin/data/openni/lib/libnimRecorder.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libnimRecorder.dylib\";\ncp -f bin/data/openni/lib/libOpenNI.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libOpenNI.dylib\";\ncp -f bin/data/openni/lib/libusb-1.0.0.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libusb-1.0.0.dylib\";\ncp -f bin/data/openni/lib/libXnCore.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnCore.dylib\";\ncp -f bin/data/openni/lib/libXnDDK.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnDDK.dylib\";\ncp -f bin/data/openni/lib/libXnDeviceFile.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnDeviceFile.dylib\";\ncp -f bin/data/openni/lib/libXnDeviceSensorV2KM.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnDeviceSensorV2KM.dylib\";\ncp -f bin/data/openni/lib/libXnFormats.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnFormats.dylib\";\ncp -f bin/data/openni/lib/libXnVCNITE_1_5_2.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnVCNITE_1_5_2.dylib\";\ncp -f bin/data/openni/lib/libXnVFeatures_1_5_2.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnVFeatures_1_5_2.dylib\";\ncp -f bin/data/openni/lib/libXnVHandGenerator_1_5_2.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnVHandGenerator_1_5_2.dylib\";\ncp -f bin/data/openni/lib/libXnVNite_1_5_2.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/libXnVNite_1_5_2.dylib\";\n\n\n\nin=\"install_name_tool -change \"\n\ncd \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/\"\n\nlibs=(*.dylib)\nnum_libs=${#libs[*]}\n    \nfor lib in *.dylib ; do\n    i=0\n    echo \"\"\n    echo \"${lib}\"\n    echo \"-------------------------------------------------\"\n    lines=`otool -L  ${lib}`\n    echo ${lines}\n    for linked_name in ${lines} ; do\n        for local_lib in ${libs[@]}; do\n            in=`echo ${linked_name} | grep -i ${local_lib}`\n            if [ \"$in\" != \"\" ] ; then\n                check_id=`echo \"${linked_name}\" | grep -i \"${lib}\"`\n                \n                if [ \"$check_id\" != \"\" ] ; then\n                    install_name_tool -id  \"@executable_path/./${local_lib}\" ${lib}\n                    echo install_name_tool -id  \"@executable_path/./${local_lib}\" ${lib}\n                else\n                    install_name_tool -change \"${linked_name}\" \"@executable_path/./${local_lib}\" ${lib}\n                    echo  install_name_tool -change \"${linked_name}\" \"@executable_path/./${local_lib}\" ${lib}\n                fi\n            fi\n        done\n    done\ndone\n\napp_lines=`otool -L $PRODUCT_NAME`\necho ${app_lines}\nfor linked_name in ${app_lines} ; do\n    for local_lib in ${libs[@]} ; do\n        in=`echo ${linked_name} | grep -i ${local_lib}`\n        if [ \"$in\" != \"\" ] ; then\n            check_id=`echo \"${linked_name}\" | grep -i \"$PRODUCT_NAME\"`\n            if [ \"$check_id\" != \"\" ] ; then\n                install_name_tool -id  \"@executable_path/./${local_lib}\" $PRODUCT_NAME\n                echo install_name_tool -id  \"@executable_path/./${local_lib}\" $PRODUCT_NAME\n            else\n                install_name_tool -change \"${linked_name}\" \"@executable_path/./${local_lib}\" $PRODUCT_NAME\n                echo  install_name_tool -change \"${linked_name}\" \"@executable_path/./${local_lib}\" $PRODUCT_NAME\n            fi\n        fi\n    done\ndone\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1126,9 +1133,10 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/vs2010\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/win_cb\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/bin/data/openni/lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PREBINDING = NO;
 				PRODUCT_NAME = Kinect2Scratch4Mac;
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1241,9 +1249,10 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_7 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/vs2010\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_8 = "\"$(SRCROOT)/../../../addons/ofxOpenCv/libs/opencv/lib/win_cb\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_9 = "\"$(SRCROOT)/bin/data/openni/lib\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PREBINDING = NO;
 				PRODUCT_NAME = Kinect2Scratch4Mac;
+				SDKROOT = macosx10.9;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1272,6 +1281,7 @@
 					"-D__MACOSX_CORE__",
 					"-lpthread",
 				);
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -1301,6 +1311,7 @@
 					"-D__MACOSX_CORE__",
 					"-lpthread",
 				);
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};

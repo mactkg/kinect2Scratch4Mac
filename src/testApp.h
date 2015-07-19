@@ -33,16 +33,16 @@ public:
     //Kinect
 	ofxOpenNI kinect;
     ofxHardwareDriver dev_kinect;
-    bool isKinect;
+    bool readyKinect;
     
     //Scratch
     ofxScratch scratch;
     void sendPoints(ofPoint position, int joint, int n);
-    bool isScratch;
     
     //GUI
     ofxPanel gui;
-    ofxToggle connectScratch, connectKinect, oldValues;
+    ofxButton connect;
+    ofxToggle oldValues;
     ofxIntSlider tilt_angle;
     bool isGui;
     float scale;

@@ -11,37 +11,27 @@ string newJointNames[] = {"ShoulderCenter", "Spine", "Head", "ShoulderLeft", "El
 void testApp::setup() {
     //init
     ofBackground(100);
-    isKinect = false;
-    isScratch = false;
+    readyKinect = false;
     isGui = true;
     scale = 1.0;
     
     ofSetWindowTitle("Kinect2Scratch4Mac - v005b4");
     
     //GUI
-    gui.setup("Toggle gui panel:g");
-    gui.add(connectKinect.setup("1:Kinect::Connect", false));
-    gui.add(connectScratch.setup("2:Scratch::Connect", false));
-    gui.add(tilt_angle.setup("Kinect::Motor", 0, -30, 30));
+    gui.setup("Toggle GUI panel:g");
+    gui.add(connect.setup("Launch"));
+    gui.add(tilt_angle.setup("Adjust angle", 0, -30, 30));
     gui.add(oldValues.setup("Old style value name", false));
     
-    for (int i = 0; i < gui.getNumControls(); i++) {
-        ofxBaseGui* part = gui.getControl(i);
-        //write codes for setting here
-    }
-    
     //Event listener
-    connectKinect.addListener(this, &testApp::setupKinect);
-    connectScratch.addListener(this, &testApp::setupScratch);
+    connect.addListener(this, &testApp::setupKinect);
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
 
-    if (isKinect) {
+    if (readyKinect) {
         updateKinect();
-    }
-    if (isScratch) {
         scratch.update();
     }
     
@@ -65,7 +55,7 @@ void testApp::draw(){
     
     ofSetColor(255);
     
-    if(isKinect){
+    if(readyKinect){
 
         ofSetColor(255, 255, 255);
         
@@ -143,7 +133,11 @@ void testApp::windowResized(int w, int h){
 //                      /________\                     //
 //-----------------------------------------------------//
 
-void testApp::setupKinect(bool & dummy) {    
+void testApp::setupKinect(bool & dummy) {
+    if (readyKinect) {
+        return;
+    }
+    
     kinect.setup();
     kinect.setupFromXML(ofToDataPath("openni/config/modules.xml"));
     kinect.addDepthGenerator();
@@ -158,7 +152,9 @@ void testApp::setupKinect(bool & dummy) {
     dev_kinect.setup();
     tilt_angle = dev_kinect.getTiltAngle();
     
-    isKinect = true;
+    scratch.setup();
+
+    readyKinect = true;
 }
 
 //--------------------------------------------------------------
@@ -183,7 +179,7 @@ void testApp::updateKinect(){
 
 //--------------------------------------------------------------
 void testApp::sendPoints(ofPoint position, int joint, int n){
-    if (isScratch) {
+    if (readyKinect) {
         //numbering
         n++;
         string number = "";
@@ -212,15 +208,10 @@ void testApp::sendPoints(ofPoint position, int joint, int n){
     }
 }
 
-//--------------------------------------------------------------
-void testApp::setupScratch(bool & dummy) {
-    scratch.setup();
-    isScratch = true;
-}
 
 //--------------------------------------------------------------
 void testApp::exit(){
-    if(isKinect){
+    if(readyKinect){
         kinect.stop();
         dev_kinect.shutDown();
     }

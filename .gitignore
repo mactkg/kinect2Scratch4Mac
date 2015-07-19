@@ -18,6 +18,7 @@ Release*/
 *.mode2v3
 #XCode 4
 *.xcworkspace
+*.xcuserd
 
 # OS-specific ignore patterns
 #OSX
